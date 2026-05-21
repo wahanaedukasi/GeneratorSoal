@@ -134,7 +134,7 @@
                onerror="this.onerror=null; this.src='https://placehold.co/150x150/f97316/ffffff?text=Wahana+Edukasi';">
         </div>
         <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Wahana Edukasi</h2>
-        <p class="text-slate-500 mt-2 text-sm">Masuk dengan akun Anda untuk mulai mengenerasi soal otomatis</p>
+        <p class="text-slate-500 mt-2 text-sm">Masuk dengan akun Anda untuk mulai mengenerasi soal otomatis berbasis AI</p>
       </div>
 
       <form id="form-login" onsubmit="handleLogin(event)" class="space-y-5">
@@ -192,15 +192,15 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Nama Lengkap & Gelar</label>
-            <input type="text" id="reg-name" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="Contoh: Nama Guru, S.Pd.">
+            <input type="text" id="reg-name" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="Contoh: Budi Santoso, S.Pd.">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Nama Instansi / Sekolah</label>
-            <input type="text" id="reg-instansi" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="SD Wahana Edukasi">
+            <input type="text" id="reg-instansi" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="SD Merdeka Belajar">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Alamat Email Aktif</label>
-            <input type="email" id="reg-email" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="nama@guru.com">
+            <input type="email" id="reg-email" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="budi@sekolah.sch.id">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Nomor HP / WhatsApp</label>
@@ -220,7 +220,7 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Username Baru</label>
-              <input type="text" id="reg-username" required class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm outline-none" placeholder="Contoh: namaguru123">
+              <input type="text" id="reg-username" required class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm outline-none" placeholder="Contoh: budiguru123">
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Password Baru</label>
@@ -559,7 +559,7 @@
         <!-- LOADING INDICATOR -->
         <div id="result-loading" class="hidden bg-white border border-slate-100 rounded-3xl p-12 shadow-md text-center flex flex-col items-center justify-center space-y-4">
           <div class="w-16 h-16 border-4 border-slate-100 border-t-brand-orange rounded-full animate-spin"></div>
-          <h4 class="text-lg font-bold text-slate-800">Menghasilkan Soal Kurikulum</h4>
+          <h4 class="text-lg font-bold text-slate-800">Menghasilkan Soal Kurikulum Merdeka</h4>
           <p class="text-xs text-slate-400 max-w-sm">Mohon tunggu, AI sedang menyusun butir soal ujian berkualitas tinggi berdasarkan kriteria yang dipilih...</p>
         </div>
 
@@ -687,7 +687,7 @@
 
     // DATABASE UTAMA LOKAL SINKRON
     let users = [
-      { id: "1", name: "Administrator Utama", email: "admin@edugen.id", username: "admin", pass: "admin123", role: "Admin", instansi: "Pusat Kurikulum", level: "", kelas: "", limit_ganti: 1, isApproved: true },
+      { id: "1", name: "Administrator Utama", email: "admin@edugen.id", username: "admin", pass: "admin123", role: "Admin", instansi: "Pusat Kurikulum Merdeka", level: "", kelas: "", limit_ganti: 1, isApproved: true },
       { id: "2", name: "Rina Kartika, S.Pd.", email: "rina@sekolah.sch.id", username: "rina", pass: "guru123", role: "Pengguna", instansi: "SDN 1 Menteng", level: "SD", kelas: "Kelas 4", limit_ganti: 1, isApproved: true }
     ];
 
@@ -1057,18 +1057,35 @@
       activeVoucherCode = "";
     }
 
+    async function silentCloudSync() {
+      try {
+        const response = await fetch(`${appscriptURL}?action=get_data&_cb=${Date.now()}`);
+        if (response.ok) {
+          const cloudData = await response.json();
+          if (cloudData.status === "success") {
+            if (cloudData.users && cloudData.users.length > 0) {
+              users = cloudData.users;
+              localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+            }
+            if (cloudData.pending) {
+              pendingRegistrations = cloudData.pending;
+              localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
+            }
+          }
+        }
+      } catch (err) {
+        console.warn("Silent sync terhambat. Menggunakan cache data lokal.", err);
+      }
+    }
+
+    // PEMBARUAN UTAMA: Menggunakan GET request saat "Sinkron Cloud" agar selalu lolos CORS Bypass & Redirect Block secara total
     async function syncDataFromCloud() {
       const syncIcon = document.getElementById('sync-icon');
       syncIcon.classList.add('animate-spin');
       showToast("Menghubungkan ke Google Sheet cloud...");
 
       try {
-        const response = await fetch(appscriptURL, {
-          method: "POST",
-          headers: { "Content-Type": "text/plain;charset=utf-8" },
-          body: JSON.stringify({ action: "get_data" })
-        });
-        
+        const response = await fetch(`${appscriptURL}?action=get_data&_cb=${Date.now()}`);
         if (!response.ok) throw new Error("Akses Apps Script ditolak.");
         const cloudData = await response.json();
 
@@ -1091,7 +1108,7 @@
         }
       } catch (err) {
         console.error(err);
-        showToast("Gagal menghubungi Google Sheet cloud.", "error");
+        showToast("Gagal menghubungi Google Sheet cloud. Pastikan URL Apps Script benar dan sudah dideploy ulang.", "error");
       } finally {
         syncIcon.classList.remove('animate-spin');
       }
@@ -1361,7 +1378,7 @@
       document.getElementById('result-ready').classList.add('hidden');
       document.getElementById('result-loading').classList.remove('hidden');
 
-      const systemInstruction = "Anda adalah AI generator soal akademis profesional untuk sekolah dasar (SD) dan sekolah menengah pertama (SMP) di Indonesia. Buatlah kisi-kisi, lembar soal, dan pembahasan jawaban secara akurat sesuai standar penilaian Kurikulum.";
+      const systemInstruction = "Anda adalah AI generator soal akademis profesional untuk sekolah dasar (SD) dan sekolah menengah pertama (SMP) di Indonesia. Buatlah kisi-kisi, lembar soal, dan pembahasan jawaban secara akurat sesuai standar penilaian Kurikulum Merdeka.";
       
       const userPrompt = `
       Buatlah evaluasi soal dalam bentuk JSON terstruktur murni:
@@ -1385,7 +1402,7 @@
       - Jenis Soal yang dipilih (harus sesuai dengan pilihan): ${types.join(", ")}
       - Tingkat Kognitif / Level Soal yang boleh dibuat: ${selectedLevels.join(", ")}
       - Jumlah Soal: ${count} butir soal
-      ${customPromptText ? `- Instruksi Tambahan Khusus Pengguna: "${customPromptText}"` : ''}
+      ${customPromptText ? `- Instruksi Tambahan Khsung Pengguna: "${customPromptText}"` : ''}
 
       Peraturan penting:
       1. Jika tipe soal 'Isian Singkat', 'Benar/Salah' or 'Uraian/Essay', maka atribut 'pilihan' bernilai null.
