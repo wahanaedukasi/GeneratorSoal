@@ -339,10 +339,10 @@
         <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-orange/10 rounded-full blur-xl"></div>
         <div class="relative z-10 max-w-3xl">
           <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-yellow text-slate-950 mb-3">
-            <i class="fas fa-exclamation-circle mr-1"></i> Pengaturan Kelas Pengajaran
+            <i class="fas fa-exclamation-circle mr-1"></i> Pengaturan Kelas Pertama
           </span>
-          <h3 class="text-xl font-bold tracking-tight">Setel Kelas Guru Anda</h3>
-          <p class="text-slate-300 text-xs mt-1 mb-4">Pilihlah tingkatan kelas yang akan diajarkan. Anda hanya diperkenankan mengubah setelan kelas ini **maksimal 1 kali selamanya**. Pastikan memilih dengan benar.</p>
+          <h3 class="text-xl font-bold tracking-tight">Pilih Tingkatan Kelas Anda</h3>
+          <p class="text-slate-300 text-xs mt-1 mb-4">Pilihlah jenjang pendidikan mengajar Anda. Harap diperhatikan bahwa Anda hanya memiliki <span class="font-bold text-brand-yellow">1 kali kesempatan saja</span> untuk mengubah pilihan kelas di kemudian hari.</p>
           
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
             <div>
@@ -381,7 +381,7 @@
               <i class="fas fa-graduation-cap"></i>
             </div>
             <div>
-              <span class="text-[10px] text-slate-400 font-bold uppercase">Tingkatan & Kelas Terpilih</span>
+              <span class="text-[10px] text-slate-400 font-bold uppercase">Kelas Aktif Saat Ini</span>
               <h4 id="display-class-info" class="text-base font-extrabold text-slate-800"></h4>
             </div>
           </div>
@@ -495,7 +495,7 @@
 
         </div>
 
-        <!-- TOMBOL GENERATE SOAL UTAMA (BARU - INTERAKTIF REVISI) -->
+        <!-- TOMBOL GENERATE SOAL UTAMA -->
         <div class="pt-4 border-t border-slate-100 flex justify-end">
           <button id="btn-generate" onclick="generateQuestions()" class="w-full lg:w-96 bg-gradient-to-r from-brand-orange to-brand-yellow hover:opacity-90 text-slate-900 font-extrabold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-3">
             <i class="fas fa-magic"></i>
@@ -554,12 +554,12 @@
         </div>
       </div>
 
-      <!-- KANAN: PREVIEW HASIL SOAL (DIBAHWAH PARAMETER SEKARANG) -->
+      <!-- KANAN: PREVIEW HASIL SOAL -->
       <div class="w-full">
         <!-- LOADING INDICATOR -->
         <div id="result-loading" class="hidden bg-white border border-slate-100 rounded-3xl p-12 shadow-md text-center flex flex-col items-center justify-center space-y-4">
           <div class="w-16 h-16 border-4 border-slate-100 border-t-brand-orange rounded-full animate-spin"></div>
-          <h4 class="text-lg font-bold text-slate-800">Menghasilkan Soal Kurikulum Merdeka</h4>
+          <h4 class="text-lg font-bold text-slate-800">Menghasikan Soal Kurikulum Merdeka</h4>
           <p class="text-xs text-slate-400 max-w-sm">Mohon tunggu, AI sedang menyusun butir soal ujian berkualitas tinggi berdasarkan kriteria yang dipilih...</p>
         </div>
 
@@ -682,11 +682,7 @@
 
   <!-- SCRIPT UTAMA -->
   <script>
-    // ── CLAUDE AI CONFIG ───────────────────────────────────────────────
-    // Dapatkan API key di: https://console.anthropic.com/
-    const CLAUDE_API_KEY = "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";
-    const CLAUDE_MODEL   = "claude-sonnet-4-20250514"; // Claude Sonnet 4 — cepat & stabil
-
+    const apiKey = ""; 
     const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
     const appscriptURL = "https://script.google.com/macros/s/AKfycbwf1vn-G9ZzZ7gUgla7OmtHWhgiRFClCkrk_hmMg85-Dcm6IINruf9HjwlNz6M-zNzp/exec";
 
@@ -747,6 +743,32 @@
       }
     }
 
+    // MEMPERBAIKI REFERENCEERROR: MENDEFINISIKAN FUNGSI showToast SECARA GLOBAL DI ATAS
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const msgEl = document.getElementById('toast-message');
+      const iconEl = document.getElementById('toast-icon');
+
+      if (!toast || !msgEl || !iconEl) return;
+
+      msgEl.innerText = message;
+      if (type === 'success') {
+        iconEl.innerHTML = '<i class="fas fa-check-circle"></i>';
+        iconEl.className = 'text-brand-yellow text-lg';
+      } else {
+        iconEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
+        iconEl.className = 'text-brand-orange text-lg';
+      }
+
+      toast.classList.remove('translate-y-[-150%]');
+      toast.classList.add('translate-y-0');
+
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0');
+        toast.classList.add('translate-y-[-150%]');
+      }, 4000);
+    }
+
     function togglePasswordVisibility(inputId, eyeIconId) {
       const passwordInput = document.getElementById(inputId);
       const eyeIcon = document.getElementById(eyeIconId);
@@ -792,7 +814,7 @@
       }
 
       statusMsg.className = "text-xs font-bold text-brand-blue animate-pulse";
-      statusMsg.innerText = "Memverifikasi voucher ke cloud...";
+      statusMsg.innerText = "Memverifikasi voucher ke cloud Google Sheet...";
       statusMsg.classList.remove('hidden');
 
       try {
@@ -1471,7 +1493,7 @@
     }
 
     // ==========================================
-    // CLAUDE SONNET AI — GENERATOR SOAL
+    // AI GEMINI INTEGRATION (GENERATOR SOAL)
     // ==========================================
     async function generateQuestions() {
       if (!currentUser.level || !currentUser.kelas) {
@@ -1511,103 +1533,133 @@
       const customPromptText = document.getElementById('gen-custom-prompt').value.trim();
       const count = parseInt(document.getElementById('gen-count').value) || 5;
 
-      // State tombol & loading
+      // REVISI TOMBOL & LOADING GENERATE STATE
       const btnGen = document.getElementById('btn-generate');
       btnGen.disabled = true;
       btnGen.className = "w-full lg:w-96 bg-slate-600 text-slate-100 font-bold py-4 rounded-xl cursor-not-allowed transition-all flex items-center justify-center space-x-3";
-      btnGen.innerHTML = `<i class="fas fa-spinner animate-spin"></i> <span>Claude AI sedang membuat soal...</span>`;
+      btnGen.innerHTML = `<i class="fas fa-spinner animate-spin"></i> <span>proses pembuatan soal...</span>`;
 
       document.getElementById('result-empty').classList.add('hidden');
       document.getElementById('result-ready').classList.add('hidden');
       document.getElementById('result-loading').classList.remove('hidden');
 
-      const systemInstruction = `Anda adalah AI generator soal akademis profesional untuk sekolah dasar (SD) dan sekolah menengah pertama (SMP) di Indonesia. Buatlah kisi-kisi, lembar soal, dan pembahasan jawaban secara akurat sesuai standar Kurikulum Merdeka.
+      const systemInstruction = "Anda adalah AI generator soal akademis profesional untuk sekolah dasar (SD) dan sekolah menengah pertama (SMP) di Indonesia. Buatlah kisi-kisi, lembar soal, dan pembahasan jawaban secara akurat sesuai standar penilaian Kurikulum Merdeka.";
+      
+      const userPrompt = `
+      Buatlah evaluasi soal dalam bentuk JSON terstruktur murni:
+      {
+        "kisi_kisi": [
+          {"no": 1, "materi_pokok": "materi", "indikator": "indikator ketercapaian", "jenis": "Pilihan Ganda", "level": "LOTS/MOTS/HOTS"}
+        ],
+        "soal": [
+          {"no": 1, "tipe": "Pilihan Ganda atau Pilihan Ganda Kompleks atau Isian Singkat atau Benar/Salah atau Uraian/Essay", "pertanyaan": "pertanyaan", "pilihan": ["A. x", "B. y", "C. z", "D. w"], "jawaban_benar": "A"}
+        ],
+        "kunci_jawaban": [
+          {"no": 1, "kunci": "A atau teks jawaban", "pembahasan": "pembahasan detail"}
+        ]
+      }
 
-WAJIB: Respons Anda harus berupa JSON murni yang valid. Jangan tambahkan teks, kalimat, atau markdown apapun di luar JSON. Mulai langsung dengan karakter { dan akhiri dengan }.`;
+      Kriteria parameter:
+      - Jenjang Sekolah: \${currentUser.level}
+      - Kelas: \${currentUser.kelas}
+      - Mata Pelajaran: \${subject}
+      - Materi Pokok: \${enteredMateri.join(", ")}
+      - Jenis Soal yang dipilih (harus sesuai dengan pilihan): \${types.join(", ")}
+      - Tingkat Kognitif / Level Soal yang boleh dibuat: \${selectedLevels.join(", ")}
+      - Jumlah Soal: \${count} butir soal
+      \${customPromptText ? \`- Instruksi Tambahan Khusus Pengguna: "\${customPromptText}"\` : ''}
 
-      const userPrompt = `Buatlah evaluasi soal dengan format JSON berikut persis:
-{
-  "kisi_kisi": [
-    {"no": 1, "materi_pokok": "...", "indikator": "...", "jenis": "Pilihan Ganda", "level": "LOTS"}
-  ],
-  "soal": [
-    {"no": 1, "tipe": "Pilihan Ganda", "pertanyaan": "...", "pilihan": ["A. ...", "B. ...", "C. ...", "D. ..."], "jawaban_benar": "A"}
-  ],
-  "kunci_jawaban": [
-    {"no": 1, "kunci": "A", "pembahasan": "..."}
-  ]
-}
+      Peraturan penting:
+      1. Jika tipe soal 'Isian Singkat', 'Benar/Salah' or 'Uraian/Essay', maka atribut 'pilihan' bernilai null.
+      2. Untuk tipe 'Pilihan Ganda Kompleks', sediakan beberapa pilihan dan berikan kunci jawaban lengkap dengan pilihan yang benar (contoh kunci: "A dan C").
+      3. Respons wajib berupa murni data JSON valid tanpa pembungkus teks deskripsi di luar tag JSON.
+      `;
 
-Parameter soal:
-- Jenjang: ${currentUser.level}
-- Kelas: ${currentUser.kelas}
-- Mata Pelajaran: ${subject}
-- Materi Pokok: ${enteredMateri.join(", ")}
-- Jenis Soal: ${types.join(", ")}
-- Level Kognitif: ${selectedLevels.join(", ")}
-- Jumlah Soal: ${count} butir
-${customPromptText ? `- Instruksi Tambahan: "${customPromptText}"` : ""}
-
-Aturan wajib:
-1. Tipe Isian Singkat, Benar/Salah, atau Uraian/Essay → "pilihan" bernilai null.
-2. Pilihan Ganda Kompleks → jawaban bisa lebih dari satu (contoh kunci: "A dan C").
-3. Output hanya JSON valid murni, tanpa teks atau markdown di luar JSON.`;
-
-      const maxRetries = 3;
-      let delay = 1500;
+      const maxRetries = 5;
+      let delay = 1000;
       let success = false;
       let resultText = "";
 
       for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
-          const response = await fetch("https://api.anthropic.com/v1/messages", {
+          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
             method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              "x-api-key": CLAUDE_API_KEY,
-              "anthropic-version": "2023-06-01",
-              "anthropic-dangerous-direct-browser-calls": "true"
-            },
+            headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
-              model: CLAUDE_MODEL,
-              max_tokens: 4096,
-              system: systemInstruction,
-              messages: [{ role: "user", content: userPrompt }]
+              contents: [{ parts: [{ text: userPrompt }] }],
+              systemInstruction: { parts: [{ text: systemInstruction }] },
+              generationConfig: {
+                responseMimeType: "application/json",
+                responseSchema: {
+                  type: "OBJECT",
+                  properties: {
+                    kisi_kisi: {
+                      type: "ARRAY",
+                      items: {
+                        type: "OBJECT",
+                        properties: {
+                          no: { type: "INTEGER" },
+                          materi_pokok: { type: "STRING" },
+                          indikator: { type: "STRING" },
+                          jenis: { type: "STRING" },
+                          level: { type: "STRING" }
+                        },
+                        required: ["no", "materi_pokok", "indikator", "jenis", "level"]
+                      }
+                    },
+                    soal: {
+                      type: "ARRAY",
+                      items: {
+                        type: "OBJECT",
+                        properties: {
+                          no: { type: "INTEGER" },
+                          tipe: { type: "STRING" },
+                          pertanyaan: { type: "STRING" },
+                          pilihan: {
+                            type: "ARRAY",
+                            items: { type: "STRING" },
+                            nullable: true
+                          },
+                          jawaban_benar: { type: "STRING" }
+                        },
+                        required: ["no", "tipe", "pertanyaan", "jawaban_benar"]
+                      }
+                    },
+                    kunci_jawaban: {
+                      type: "ARRAY",
+                      items: {
+                        type: "OBJECT",
+                        properties: {
+                          no: { type: "INTEGER" },
+                          kunci: { type: "STRING" },
+                          pembahasan: { type: "STRING" }
+                        },
+                        required: ["no", "kunci", "pembahasan"]
+                      }
+                    }
+                  },
+                  required: ["kisi_kisi", "soal", "kunci_jawaban"]
+                }
+              }
             })
           });
 
-          if (!response.ok) {
-            const errBody = await response.json().catch(() => ({}));
-            if (response.status === 429) {
-              if (attempt === maxRetries) throw new Error("Rate limit tercapai.");
-              await new Promise(r => setTimeout(r, delay * 3));
-              delay *= 2;
-              continue;
-            }
-            throw new Error(errBody?.error?.message || `HTTP ${response.status}`);
-          }
-
+          if (!response.ok) throw new Error("Gagal mengambil respon API.");
+          
           const resultJson = await response.json();
-          resultText = resultJson?.content?.[0]?.text || "";
-
-          // Bersihkan sisa markdown jika ada
-          resultText = resultText.replace(/```json\s*/gi, "").replace(/```\s*/gi, "").trim();
-
-          // Validasi JSON sebelum diterima
-          JSON.parse(resultText);
-
+          resultText = resultJson.candidates?.[0]?.content?.parts?.[0]?.text;
           success = true;
           break;
         } catch (error) {
-          console.error(`Attempt ${attempt} gagal:`, error);
           if (attempt === maxRetries) {
+            // Restore Button State on Failure
             btnGen.disabled = false;
             btnGen.className = "w-full lg:w-96 bg-gradient-to-r from-brand-orange to-brand-yellow hover:opacity-90 text-slate-900 font-extrabold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-3";
             btnGen.innerHTML = `<i class="fas fa-magic"></i> <span>Generate Soal Sekarang</span>`;
 
             document.getElementById('result-loading').classList.add('hidden');
             document.getElementById('result-empty').classList.remove('hidden');
-            showToast("Gagal menghubungi Claude AI. Periksa API key & koneksi.", "error");
+            showToast("Server sibuk. Silakan lakukan generate kembali.", "error");
             return;
           }
           await new Promise(resolve => setTimeout(resolve, delay));
@@ -1615,7 +1667,7 @@ Aturan wajib:
         }
       }
 
-      // Restore tombol
+      // Restore Button State on Success/Completion
       btnGen.disabled = false;
       btnGen.className = "w-full lg:w-96 bg-gradient-to-r from-brand-orange to-brand-yellow hover:opacity-90 text-slate-900 font-extrabold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-3";
       btnGen.innerHTML = `<i class="fas fa-magic"></i> <span>Generate Soal Sekarang</span>`;
