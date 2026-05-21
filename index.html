@@ -59,6 +59,37 @@
     </div>
   </div>
 
+  <!-- MODAL POP-UP QRIS BESAR (BARU) -->
+  <div id="modal-qris" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-md flex items-center justify-center p-4" onclick="closeQrisModal()">
+    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 space-y-4 relative" onclick="event.stopPropagation()">
+      <button onclick="closeQrisModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-all">
+        <i class="fas fa-times text-xl"></i>
+      </button>
+      <div class="text-center pt-2">
+        <h3 class="text-xl font-extrabold text-slate-900">QRIS Pembayaran Resmi</h3>
+        <p class="text-xs text-slate-500 mt-1">Silakan scan kode di bawah ini menggunakan aplikasi e-wallet atau m-banking Anda</p>
+      </div>
+      <div class="bg-white p-4 rounded-2xl border border-slate-200 flex flex-col items-center shadow-inner">
+        <div class="w-full flex justify-between items-center mb-2 pb-2 border-b border-slate-100">
+          <span class="text-xs font-black tracking-tight text-slate-900">QRIS</span>
+          <span class="text-[10px] font-bold text-slate-400 tracking-widest">GPN</span>
+        </div>
+        <p class="text-xs font-extrabold text-slate-900 text-center uppercase">WAHANA EDUKASI</p>
+        <p class="text-[9px] text-slate-500 text-center font-semibold mb-4">NMID: ID1026474822131</p>
+        
+        <img src="https://github.com/wahanaedukasi/GeneratorSoal/blob/a490c1b42d85c2ff748823523b17be3f7821dd7a/WhatsApp%20Image%202026-05-05%20at%2009.02.21.jpeg?raw=true" 
+             alt="QRIS Wahana Edukasi Besar" 
+             class="w-72 h-72 object-contain"
+             onerror="this.onerror=null; this.src='https://placehold.co/300x300/ffffff/000000?text=Scan+QRIS';">
+             
+        <p class="text-[10px] font-semibold text-slate-400 mt-4 text-center">Scan QRIS Wahana Edukasi</p>
+      </div>
+      <button onclick="closeQrisModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-sm transition-all shadow-md">
+        Tutup Tampilan QRIS
+      </button>
+    </div>
+  </div>
+
   <!-- HEADER / NAV -->
   <header class="bg-white border-b border-slate-100 sticky top-0 z-40 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
@@ -219,25 +250,32 @@
             </p>
           </div>
           
-          <!-- IMAGE QR CODE ASLI BERDASARKAN LINK USER -->
-          <div class="w-56 bg-white p-4 rounded-2xl border border-sky-200 shadow-lg flex flex-col items-center">
+          <!-- IMAGE QR CODE ASLI BERDASARKAN LINK USER (DIPERBESAR & KLIK UNTUK POPUP) -->
+          <div class="w-64 bg-white p-5 rounded-2xl border border-sky-200 shadow-lg flex flex-col items-center">
             <div class="w-full flex justify-between items-center mb-1.5 border-b border-slate-100 pb-1.5">
               <span class="text-[10px] font-black tracking-tight text-slate-900">QRIS</span>
               <span class="text-[8px] font-bold text-slate-400 tracking-widest">GPN</span>
             </div>
             
-            <p class="text-[9px] font-bold text-slate-800 text-center uppercase tracking-wide">WAHANA EDUKASI</p>
-            <p class="text-[7px] text-slate-500 text-center font-semibold mb-2">NMID: ID1026474822131</p>
+            <p class="text-[10px] font-bold text-slate-800 text-center uppercase tracking-wide">WAHANA EDUKASI</p>
+            <p class="text-[8px] text-slate-500 text-center font-semibold mb-3">NMID: ID1026474822131</p>
 
-            <!-- Menggunakan gambar QR Code asli yang disediakan user -->
-            <div class="bg-slate-50 p-1.5 rounded-xl border border-slate-100 overflow-hidden flex items-center justify-center">
+            <!-- Menggunakan gambar QR Code asli yang disediakan user (Interaktif dengan hover dan pop-up) -->
+            <div onclick="openQrisModal()" class="bg-slate-50 p-1.5 rounded-xl border border-slate-200 overflow-hidden flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95 transition-all duration-300 shadow-sm relative group">
               <img src="https://github.com/wahanaedukasi/GeneratorSoal/blob/a490c1b42d85c2ff748823523b17be3f7821dd7a/WhatsApp%20Image%202026-05-05%20at%2009.02.21.jpeg?raw=true" 
                    alt="QRIS Pembayaran Wahana Edukasi" 
-                   class="w-36 h-36 object-contain"
-                   onerror="this.onerror=null; this.src='https://placehold.co/150x150/ffffff/000000?text=Scan+QRIS';">
+                   class="w-44 h-44 object-contain transition-all duration-300 group-hover:brightness-95"
+                   onerror="this.onerror=null; this.src='https://placehold.co/180x180/ffffff/000000?text=Scan+QRIS';">
+              <div class="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                <span class="bg-white/90 text-slate-900 font-extrabold px-3 py-1.5 rounded-lg text-[10px] shadow flex items-center gap-1.5">
+                  <i class="fas fa-search-plus"></i> Perbesar
+                </span>
+              </div>
             </div>
             
-            <p class="text-[8px] font-semibold text-slate-400 mt-2 text-center">Satu QRIS Untuk Semua</p>
+            <p class="text-[8px] font-bold text-brand-blue mt-3 text-center animate-pulse">
+              <i class="fas fa-hand-pointer mr-1"></i> Klik gambar untuk perbesar
+            </p>
           </div>
         </div>
 
@@ -677,6 +715,15 @@
 
     function setupRadioButtons() {
       // Radio buttons diatur via manual CSS/Tailwind
+    }
+
+    // FUNGSI MODAL QRIS POP-UP (BARU)
+    function openQrisModal() {
+      document.getElementById('modal-qris').classList.remove('hidden');
+    }
+
+    function closeQrisModal() {
+      document.getElementById('modal-qris').classList.add('hidden');
     }
 
     // VERIFIKASI VOUCHER DISKON
@@ -1489,6 +1536,7 @@
       document.getElementById('section-kunci').classList.remove('hidden');
     }
 
+    // PDF Export
     function downloadAsPDF() {
       applySelectiveExportVisibility();
       
@@ -1508,6 +1556,7 @@
       });
     }
 
+    // Word Doc Export
     function downloadAsDoc() {
       applySelectiveExportVisibility();
       
