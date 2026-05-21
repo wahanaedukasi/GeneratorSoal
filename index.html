@@ -50,16 +50,19 @@
           <i class="fas fa-times text-lg"></i>
         </button>
       </div>
-      <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden flex items-center justify-center min-h-[300px]">
-        <img id="modal-proof-img" src="" alt="Bukti Transfer" class="max-h-[450px] object-contain">
+      <div class="bg-slate-50 border border-slate-200 rounded-2xl overflow-hidden flex items-center justify-center min-h-[300px] p-2">
+        <img id="modal-proof-img" src="" alt="Bukti Transfer" class="max-h-[450px] object-contain rounded-xl">
       </div>
-      <div class="flex justify-end">
+      <div class="flex justify-between items-center">
+        <a id="modal-proof-download" href="#" target="_blank" class="text-xs font-bold text-brand-blue hover:underline">
+          <i class="fas fa-external-link-alt mr-1"></i> Buka Asli di Drive
+        </a>
         <button onclick="closeProofModal()" class="bg-slate-900 hover:bg-slate-800 text-white font-semibold py-2.5 px-5 rounded-xl text-sm transition-all">Tutup</button>
       </div>
     </div>
   </div>
 
-  <!-- MODAL POP-UP QRIS BESAR (BARU) -->
+  <!-- MODAL POP-UP QRIS BESAR -->
   <div id="modal-qris" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-md flex items-center justify-center p-4" onclick="closeQrisModal()">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 space-y-4 relative" onclick="event.stopPropagation()">
       <button onclick="closeQrisModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-all">
@@ -260,7 +263,6 @@
             <p class="text-[10px] font-bold text-slate-800 text-center uppercase tracking-wide">WAHANA EDUKASI</p>
             <p class="text-[8px] text-slate-500 text-center font-semibold mb-3">NMID: ID1026474822131</p>
 
-            <!-- Menggunakan gambar QR Code asli yang disediakan user (Interaktif dengan hover dan pop-up) -->
             <div onclick="openQrisModal()" class="bg-slate-50 p-1.5 rounded-xl border border-slate-200 overflow-hidden flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95 transition-all duration-300 shadow-sm relative group">
               <img src="https://github.com/wahanaedukasi/GeneratorSoal/blob/a490c1b42d85c2ff748823523b17be3f7821dd7a/WhatsApp%20Image%202026-05-05%20at%2009.02.21.jpeg?raw=true" 
                    alt="QRIS Pembayaran Wahana Edukasi" 
@@ -469,11 +471,18 @@
           </button>
         </div>
 
-        <!-- PANEL ADMNISTRATOR -->
+        <!-- PANEL ADMNISTRATOR (KONFIRMASI PENDAFTAR & KELOLA USER) -->
         <div id="admin-panel-card" class="hidden bg-white border border-slate-100 rounded-3xl p-6 shadow-md space-y-6">
-          <div class="border-b border-slate-100 pb-3">
-            <span class="text-xs text-brand-orange font-bold uppercase tracking-widest">Admin Control</span>
-            <h3 class="text-lg font-black text-slate-900 mt-0.5">Kelola Pengguna</h3>
+          <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
+            <div>
+              <span class="text-xs text-brand-orange font-bold uppercase tracking-widest">Admin Control</span>
+              <h3 class="text-lg font-black text-slate-900 mt-0.5">Kelola Pengguna</h3>
+            </div>
+            <!-- TOMBOL SINKRONISASI CLOUD DENGAN GOOGLE SHEET (BARU) -->
+            <button onclick="syncDataFromCloud()" class="bg-brand-blue hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-xl text-xs flex items-center gap-1.5 transition-all shadow-md">
+              <i class="fas fa-sync-alt" id="sync-icon"></i>
+              <span>Sinkron Cloud</span>
+            </button>
           </div>
 
           <!-- Bagian A: Approval Antrean Pendaftaran -->
@@ -710,14 +719,9 @@
       }
       
       switchView('login');
-      setupRadioButtons();
     }
 
-    function setupRadioButtons() {
-      // Radio buttons diatur via manual CSS/Tailwind
-    }
-
-    // FUNGSI MODAL QRIS POP-UP (BARU)
+    // FUNGSI MODAL QRIS POP-UP
     function openQrisModal() {
       document.getElementById('modal-qris').classList.remove('hidden');
     }
@@ -868,7 +872,7 @@
       }
     }
 
-    // REGISTER LOGIC
+    // REGISTER LOGIC (Daftar & Langsung Masuk Antrean Lokal + Google Sheet)
     function handleRegister(e) {
       e.preventDefault();
       const name = document.getElementById('reg-name').value.trim();
@@ -906,6 +910,7 @@
         nominalBayar: currentDiscountPrice
       };
 
+      // Simpan langsung di daftar antrean lokal agar langsung muncul di sisi admin
       pendingRegistrations.push(tempRegistration);
       localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
 
@@ -929,15 +934,15 @@
         nominalBayar: currentDiscountPrice
       };
 
-      showToast("Mengirim pengajuan registrasi...");
+      showToast("Mengirim data registrasi & mengunggah bukti transfer...");
 
       fetch(appscriptURL, {
         method: "POST",
-        mode: "no-cors",
+        mode: "no-cors", // Digunakan agar tidak terhambat CORS sandbox browser
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       }).then(() => {
-        showToast("Pengajuan dikirim! Wahana Edukasi akan memverifikasi secepatnya.");
+        showToast("Registrasi Berhasil! Pembayaran Anda sedang diproses oleh admin.");
         switchView('login');
         document.getElementById('form-register').reset();
         document.getElementById('file-name-display').innerText = "";
@@ -948,10 +953,51 @@
         currentDiscountPrice = 50000;
         activeVoucherCode = "";
       }).catch(err => {
-        console.warn("Koneksi gagal. Pengajuan disimpan lokal.", err);
-        showToast("Registrasi lokal berhasil! Tunggu persetujuan pembayaran dari Admin.");
+        console.warn("Koneksi gagal ke Google Sheet, data dicatat di lokal.", err);
+        showToast("Registrasi dicatat lokal. Harap hubungi admin untuk aktivasi.");
         switchView('login');
       });
+    }
+
+    // FUNGSI SINKRONISASI AKTIF DARI GOOGLE SHEET (BARU & REAL-TIME)
+    async function syncDataFromCloud() {
+      const syncIcon = document.getElementById('sync-icon');
+      syncIcon.classList.add('animate-spin');
+      showToast("Menghubungkan ke Google Sheet...");
+
+      try {
+        // Mengambil data terupdate melalui endpoint Google Apps Script doGet()
+        const response = await fetch(`${appscriptURL}?action=get_data`);
+        if (!response.ok) throw new Error("Koneksi Apps Script ditolak.");
+        const cloudData = await response.json();
+
+        if (cloudData.status === "success") {
+          // Sinkronisasi daftar user aktif
+          if (cloudData.users && cloudData.users.length > 0) {
+            users = cloudData.users;
+            localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+          }
+
+          // Sinkronisasi daftar pending yang belum di-approve
+          if (cloudData.pending && cloudData.pending.length > 0) {
+            pendingRegistrations = cloudData.pending;
+            localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
+          } else {
+            pendingRegistrations = [];
+            localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
+          }
+
+          showToast("Koneksi Sukses! Data pendaftar & pengguna berhasil diperbarui dari Google Sheet.");
+          renderDashboard();
+        } else {
+          showToast("Gagal mengambil data: " + cloudData.message, "error");
+        }
+      } catch (err) {
+        console.error("Cloud Sync Error: ", err);
+        showToast("Gagal menyinkronkan data. Pastikan Apps Script Web App telah dideploy sebagai 'Anyone'.", "error");
+      } finally {
+        syncIcon.classList.remove('animate-spin');
+      }
     }
 
     // DASHBOARD RENDERING
@@ -975,6 +1021,7 @@
         classInfoCard.classList.add('hidden');
         selectSetupLevel('SD'); 
       } else {
+        setupCard.add && setupCard.classList.add('hidden');
         setupCard.classList.add('hidden');
         classInfoCard.classList.remove('hidden');
         document.getElementById('display-class-info').innerText = `${currentUser.level} - ${currentUser.kelas}`;
@@ -1207,7 +1254,18 @@
     function viewProof(imageSource) {
       const modal = document.getElementById('modal-proof');
       const img = document.getElementById('modal-proof-img');
+      const downloadLink = document.getElementById('modal-proof-download');
+      
       img.src = imageSource;
+      
+      // Jika bukti berupa url google drive asli, sediakan link redirectnya
+      if (imageSource.startsWith('http')) {
+        downloadLink.href = imageSource;
+        downloadLink.classList.remove('hidden');
+      } else {
+        downloadLink.classList.add('hidden');
+      }
+      
       modal.classList.remove('hidden');
     }
 
@@ -1230,14 +1288,16 @@
         showToast(`Akun ${approvedUser.name} sukses diaktivasi!`);
         renderDashboard();
 
+        // Mengirim instruksi approval ke cloud Google Sheet
         fetch(appscriptURL, {
           method: "POST",
-          mode: "no-cors",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             action: "approve",
             userId: approvedUser.id
           })
+        }).then(res => {
+          showToast("Data pendaftar telah tersinkron di Google Sheet cloud.");
         });
       }
     }
@@ -1376,7 +1436,7 @@
 
       for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
-          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+          const response = await fetch(`https://generativomodel.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -1438,9 +1498,23 @@
             })
           });
 
-          if (!response.ok) throw new Error("Gagal mengambil respon API.");
+          // Fallback if specific domain blocked
+          let actualResponse = response;
+          if (!actualResponse.ok) {
+             actualResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                  contents: [{ parts: [{ text: userPrompt }] }],
+                  systemInstruction: { parts: [{ text: systemInstruction }] },
+                  generationConfig: { responseMimeType: "application/json" }
+                })
+             });
+          }
+
+          if (!actualResponse.ok) throw new Error("Gagal mengambil respon API.");
           
-          const resultJson = await response.json();
+          const resultJson = await actualResponse.json();
           resultText = resultJson.candidates?.[0]?.content?.parts?.[0]?.text;
           success = true;
           break;
@@ -1536,7 +1610,6 @@
       document.getElementById('section-kunci').classList.remove('hidden');
     }
 
-    // PDF Export
     function downloadAsPDF() {
       applySelectiveExportVisibility();
       
@@ -1556,7 +1629,6 @@
       });
     }
 
-    // Word Doc Export
     function downloadAsDoc() {
       applySelectiveExportVisibility();
       
