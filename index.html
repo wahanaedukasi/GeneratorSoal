@@ -559,7 +559,7 @@
         <!-- LOADING INDICATOR -->
         <div id="result-loading" class="hidden bg-white border border-slate-100 rounded-3xl p-12 shadow-md text-center flex flex-col items-center justify-center space-y-4">
           <div class="w-16 h-16 border-4 border-slate-100 border-t-brand-orange rounded-full animate-spin"></div>
-          <h4 class="text-lg font-bold text-slate-800">Menghasikan Soal Kurikulum Merdeka</h4>
+          <h4 class="text-lg font-bold text-slate-800">Menghasikan Soal ... </h4>
           <p class="text-xs text-slate-400 max-w-sm">Mohon tunggu, AI sedang menyusun butir soal ujian berkualitas tinggi berdasarkan kriteria yang dipilih...</p>
         </div>
 
@@ -688,7 +688,7 @@
 
     // DATABASE UTAMA LOKAL SINKRON
     let users = [
-      { id: "1", name: "Administrator Utama", email: "admin@edugen.id", username: "admin", pass: "admin123", role: "Admin", instansi: "Pusat Kurikulum Merdeka", level: "", kelas: "", limit_ganti: 1, isApproved: true },
+      { id: "1", name: "Administrator Utama", email: "admin@edugen.id", username: "admin", pass: "admin123", role: "Admin", instansi: "Pusat Kurikulum", level: "", kelas: "", limit_ganti: 1, isApproved: true },
       { id: "2", name: "Rina Kartika, S.Pd.", email: "rina@sekolah.sch.id", username: "rina", pass: "guru123", role: "Pengguna", instansi: "SDN 1 Menteng", level: "SD", kelas: "Kelas 4", limit_ganti: 1, isApproved: true }
     ];
 
@@ -1543,7 +1543,7 @@
       document.getElementById('result-ready').classList.add('hidden');
       document.getElementById('result-loading').classList.remove('hidden');
 
-      const systemInstruction = "Anda adalah AI generator soal akademis profesional untuk sekolah dasar (SD) dan sekolah menengah pertama (SMP) di Indonesia. Buatlah kisi-kisi, lembar soal, dan pembahasan jawaban secara akurat sesuai standar penilaian Kurikulum Merdeka.";
+      const systemInstruction = "Anda adalah AI generator soal akademis profesional untuk sekolah dasar (SD) dan sekolah menengah pertama (SMP) di Indonesia. Buatlah kisi-kisi, lembar soal, dan pembahasan jawaban secara akurat sesuai standar penilaian Kurikulum.";
       
       const userPrompt = `
       Buatlah evaluasi soal dalam bentuk JSON terstruktur murni:
