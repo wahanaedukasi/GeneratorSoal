@@ -906,7 +906,7 @@
         }
 
         currentUser = user;
-        showToast(`Selamat datang, ${user.name}!`);
+        showToast("Selamat datang, " + user.name + "!");
         
         document.getElementById('header-user-menu').classList.remove('hidden');
         document.getElementById('header-user-name').innerText = user.name;
@@ -1330,6 +1330,201 @@
       `).join('');
     }
 
+    // ==========================================
+    // ADMINISTRATOR FUNCTIONS (RE-INTEGRATED)
+    // ==========================================
+
+    function renderAdminUsers() {
+      const listContainer = document.getElementById('admin-users-list');
+      const countEl = document.getElementById('admin-user-count');
+
+      if (!listContainer || !countEl) return;
+
+      countEl.innerText = users.length;
+      listContainer.innerHTML = users.map(user => `
+        <div class="py-2.5 flex items-center justify-between text-xs">
+          <div class="space-y-0.5">
+            <p class="font-bold text-slate-800">${user.name}</p>
+            <p class="text-slate-400">@${user.username} &bull; ${user.email}</p>
+            <div class="flex items-center space-x-1">
+              <span class="inline-block px-1.5 py-0.5 rounded text-[10px] bg-slate-100 font-semibold text-slate-600">${user.role}</span>
+              ${user.kelas ? `<span class="text-[10px] text-brand-blue font-bold">${user.level} - ${user.kelas}</span>` : ''}
+            </div>
+          </div>
+          ${user.role !== 'Admin' ? `
+            <button onclick="adminDeleteUser('${user.id}')" class="text-rose-400 hover:text-rose-600 p-1.5 hover:bg-rose-50 rounded transition-colors">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          ` : ''}
+        </div>
+      `).join('');
+    }
+
+    function renderPendingApprovals() {
+      const pendingContainer = document.getElementById('admin-pending-list');
+      const pendingCountEl = document.getElementById('admin-pending-count');
+
+      if (!pendingContainer || !pendingCountEl) return;
+
+      pendingCountEl.innerText = pendingRegistrations.length;
+
+      if (pendingRegistrations.length === 0) {
+        pendingContainer.innerHTML = '<p class="text-xs text-slate-500 italic text-center py-2">Tidak ada pendaftaran baru</p>';
+        return;
+      }
+
+      pendingContainer.innerHTML = pendingRegistrations.map((p, idx) => `
+        <div class="bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm space-y-3 text-xs">
+          <div class="space-y-1">
+            <div class="flex justify-between items-center">
+              <h5 class="font-bold text-slate-800">${p.name}</h5>
+              <span class="text-[10px] font-bold text-brand-orange bg-orange-50 px-2 py-0.5 rounded">
+                Tagihan: Rp ${(p.nominalBayar || 50000).toLocaleString('id-ID')}
+              </span>
+            </div>
+            <p class="text-slate-500 text-[11px] leading-relaxed">
+              <i class="fas fa-school text-slate-400 mr-1"></i> ${p.instansi}<br>
+              <i class="fas fa-envelope text-slate-400 mr-1"></i> ${p.email}<br>
+              <i class="fas fa-phone text-slate-400 mr-1"></i> ${p.phone}<br>
+              ${p.voucherUsed ? `<i class="fas fa-ticket-alt text-brand-orange mr-1"></i> Voucher: <strong class="text-brand-orange">${p.voucherUsed}</strong>` : ''}
+            </p>
+          </div>
+          <div class="flex space-x-1.5 pt-1.5 border-t border-slate-50">
+            <button type="button" onclick="viewProof('${p.proofImage}')" class="flex-1 bg-sky-50 text-brand-blue border border-sky-100 hover:bg-sky-100 font-bold py-1.5 rounded-lg text-[10px] transition-all">
+              <i class="fas fa-receipt mr-1"></i> Bukti Bayar
+            </button>
+            <button type="button" onclick="adminApproveUser('${p.id}')" class="flex-1 bg-brand-orange hover:bg-orange-600 text-white font-extrabold py-1.5 rounded-lg text-[10px] transition-all shadow-sm">
+              <i class="fas fa-user-check mr-1"></i> Aktifkan
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function viewProof(imageSource) {
+      const modal = document.getElementById('modal-proof');
+      const img = document.getElementById('modal-proof-img');
+      const downloadLink = document.getElementById('modal-proof-download');
+      
+      if (!modal || !img) return;
+      img.src = imageSource;
+      
+      if (imageSource.startsWith('http')) {
+        downloadLink.href = imageSource;
+        downloadLink.classList.remove('hidden');
+      } else {
+        downloadLink.classList.add('hidden');
+      }
+      
+      modal.classList.remove('hidden');
+    }
+
+    function closeProofModal() {
+      const modal = document.getElementById('modal-proof');
+      if (modal) {
+        modal.classList.add('hidden');
+      }
+    }
+
+    async function adminApproveUser(id) {
+      const pIndex = pendingRegistrations.findIndex(p => p.id === id);
+      if (pIndex !== -1) {
+        const approvedUser = pendingRegistrations[pIndex];
+        approvedUser.isApproved = true;
+
+        showToast("Memproses persetujuan akun di cloud...");
+
+        try {
+          const response = await fetch(appscriptURL, {
+            method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" }, 
+            body: JSON.stringify({
+              action: "approve",
+              userId: approvedUser.id
+            })
+          });
+          
+          const res = await response.json();
+          if (res.status === "success") {
+            // Pindahkan ke daftar user aktif secara lokal
+            users.push(approvedUser);
+            localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+
+            pendingRegistrations.splice(pIndex, 1);
+            localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
+
+            showToast(`Akun ${approvedUser.name} berhasil diaktivasi secara instan!`);
+          } else {
+            showToast("Gagal mengaktivasi di server: " + res.message, "error");
+          }
+        } catch (err) {
+          console.warn("Koneksi cloud terhambat. Melakukan aktivasi lokal.", err);
+          
+          users.push(approvedUser);
+          localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+          pendingRegistrations.splice(pIndex, 1);
+          localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
+          
+          showToast(`Akun ${approvedUser.name} diaktifkan secara lokal.`);
+        }
+        
+        renderDashboard();
+      }
+    }
+
+    function adminAddUser() {
+      const name = document.getElementById('admin-add-name').value.trim();
+      const email = document.getElementById('admin-add-email').value.trim();
+      const userNew = document.getElementById('admin-add-username').value.trim().toLowerCase();
+      const pass = document.getElementById('admin-add-pass').value;
+      const role = document.getElementById('admin-add-role').value;
+
+      if (!name || !email || !userNew || !pass) {
+        showToast("Mohon isi seluruh parameter tambah user!", "error");
+        return;
+      }
+
+      if (users.some(u => u.email.toLowerCase() === email.toLowerCase() || u.username === userNew)) {
+        showToast("Username atau Email sudah terdaftar!", "error");
+        return;
+      }
+
+      const newUser = {
+        id: "man_" + Date.now(),
+        name: name,
+        email: email,
+        username: userNew,
+        pass: pass,
+        role: role,
+        instansi: currentUser ? currentUser.instansi : "Pusat Kurikulum",
+        level: "",
+        kelas: "",
+        limit_ganti: 1,
+        isApproved: true
+      };
+
+      users.push(newUser);
+      localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+      
+      document.getElementById('admin-add-name').value = "";
+      document.getElementById('admin-add-email').value = "";
+      document.getElementById('admin-add-username').value = "";
+      document.getElementById('admin-add-pass').value = "";
+
+      showToast("Pendaftaran pengguna manual sukses!");
+      renderAdminUsers();
+    }
+
+    function adminDeleteUser(userId) {
+      users = users.filter(u => u.id !== userId);
+      localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+      showToast("Pengguna berhasil dihapus.");
+      renderAdminUsers();
+    }
+
+    // ==========================================
+    // AI GEMINI INTEGRATION (GENERATOR SOAL)
+    // ==========================================
     async function generateQuestions() {
       if (!currentUser.level || !currentUser.kelas) {
         showToast("Harap setel kelas pengajaran terlebih dahulu!", "error");
