@@ -154,7 +154,12 @@
             <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-slate-400">
               <i class="fas fa-lock text-sm"></i>
             </span>
-            <input type="password" id="login-password" required class="w-full pl-10 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="••••••••">
+            <input type="password" id="login-password" required class="w-full pl-10 pr-12 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="••••••••">
+            
+            <!-- Tombol Toggle Mata Password (Login) -->
+            <button type="button" onclick="togglePasswordVisibility('login-password', 'login-eye-icon')" class="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400 hover:text-slate-600 transition-colors">
+              <i class="fas fa-eye text-sm" id="login-eye-icon"></i>
+            </button>
           </div>
         </div>
 
@@ -187,15 +192,15 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Nama Lengkap & Gelar</label>
-            <input type="text" id="reg-name" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="Contoh: Budi Santoso, S.Pd.">
+            <input type="text" id="reg-name" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="Contoh: Nama Guru, S.Pd.">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Nama Instansi / Sekolah</label>
-            <input type="text" id="reg-instansi" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="SD Merdeka Belajar">
+            <input type="text" id="reg-instansi" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="SD Wahana Edukasi">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Alamat Email Aktif</label>
-            <input type="email" id="reg-email" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="budi@sekolah.sch.id">
+            <input type="email" id="reg-email" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="namaguru@email.com">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Nomor HP / WhatsApp</label>
@@ -203,23 +208,41 @@
           </div>
         </div>
 
-        <!-- SETTING KREDENSIAL LOGIN YANG DIINGINKAN -->
-        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="col-span-1 md:col-span-2">
+        <!-- SETTING KREDENSIAL LOGIN YANG DIINGINKAN (DIUBAH MENJADI DUA KOLOM PASSWORD) -->
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 space-y-4">
+          <div>
             <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-2">
               <i class="fas fa-key text-brand-orange"></i>
               <span>Buat Akun Kredensial Login Anda</span>
             </h4>
             <p class="text-[11px] text-slate-500 mt-1">Gunakan kombinasi ini nanti untuk masuk ke sistem setelah disetujui Admin</p>
           </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Username Baru</label>
-            <input type="text" id="reg-username" required class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm outline-none" placeholder="Contoh: budiguru123">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Username Baru</label>
+              <input type="text" id="reg-username" required class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm outline-none" placeholder="Contoh: namaguru123">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Password Baru</label>
+              <div class="relative">
+                <input type="password" id="reg-password" required onkeyup="checkPasswordMatch()" class="w-full pl-4 pr-10 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm outline-none" placeholder="••••••••">
+                <button type="button" onclick="togglePasswordVisibility('reg-password', 'reg-p-eye')" class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-600">
+                  <i class="fas fa-eye text-xs" id="reg-p-eye"></i>
+                </button>
+              </div>
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Konfirmasi Password</label>
+              <div class="relative">
+                <input type="password" id="reg-password-confirm" required onkeyup="checkPasswordMatch()" class="w-full pl-4 pr-10 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm outline-none" placeholder="••••••••">
+                <button type="button" onclick="togglePasswordVisibility('reg-password-confirm', 'reg-cp-eye')" class="absolute inset-y-0 right-0 flex items-center pr-3 text-slate-400 hover:text-slate-600">
+                  <i class="fas fa-eye text-xs" id="reg-cp-eye"></i>
+                </button>
+              </div>
+            </div>
           </div>
-          <div>
-            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Password Baru</label>
-            <input type="password" id="reg-password" required class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm outline-none" placeholder="••••••••">
-          </div>
+          <!-- Notifikasi Kecocokan Password -->
+          <div id="password-match-indicator" class="hidden text-xs font-bold"></div>
         </div>
 
         <!-- FITUR VOUCHER DISKON -->
@@ -229,7 +252,7 @@
             <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Mempunyai Kode Voucher Diskon?</h4>
           </div>
           <div class="flex space-x-2">
-            <input type="text" id="reg-voucher" class="flex-1 px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm uppercase outline-none" placeholder="CONTOH: GURUBARU">
+            <input type="text" id="reg-voucher" class="flex-1 px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm uppercase outline-none" placeholder="CONTOH: GURUHEBAT">
             <button type="button" onclick="verifyDiscountVoucher()" class="bg-brand-blue hover:bg-sky-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition-colors">
               Terapkan Voucher
             </button>
@@ -243,7 +266,7 @@
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-orange-100 text-brand-orange">
               <i class="fas fa-tag mr-1"></i> Penawaran Spesial
             </span>
-            <h3 class="text-lg font-extrabold text-slate-900 tracking-tight">Biaya Aktivasi Akun</h3>
+            <h3 class="text-lg font-extrabold text-slate-900 tracking-tight">Biaya Aktivasi Lisensi</h3>
             <div class="flex items-baseline space-x-2">
               <span class="text-slate-400 line-through text-sm">Rp 75.000</span>
               <span class="text-3xl font-black text-brand-blue transition-all duration-300" id="display-activation-price">Rp 50.000</span>
@@ -253,7 +276,7 @@
             </p>
           </div>
           
-          <!-- IMAGE QR CODE ASLI BERDASARKAN LINK USER (DIPERBESAR & KLIK UNTUK POPUP) -->
+          <!-- IMAGE QR CODE ASLI BERDASARKAN LINK USER -->
           <div class="w-64 bg-white p-5 rounded-2xl border border-sky-200 shadow-lg flex flex-col items-center">
             <div class="w-full flex justify-between items-center mb-1.5 border-b border-slate-100 pb-1.5">
               <span class="text-[10px] font-black tracking-tight text-slate-900">QRIS</span>
@@ -478,7 +501,7 @@
               <span class="text-xs text-brand-orange font-bold uppercase tracking-widest">Admin Control</span>
               <h3 class="text-lg font-black text-slate-900 mt-0.5">Kelola Pengguna</h3>
             </div>
-            <!-- TOMBOL SINKRONISASI CLOUD DENGAN GOOGLE SHEET (BARU) -->
+            <!-- SINKRONISASI CLOUD -->
             <button onclick="syncDataFromCloud()" class="bg-brand-blue hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-xl text-xs flex items-center gap-1.5 transition-all shadow-md">
               <i class="fas fa-sync-alt" id="sync-icon"></i>
               <span>Sinkron Cloud</span>
@@ -534,7 +557,7 @@
         <!-- LOADING INDICATOR -->
         <div id="result-loading" class="hidden bg-white border border-slate-100 rounded-3xl p-12 shadow-md text-center flex flex-col items-center justify-center space-y-4">
           <div class="w-16 h-16 border-4 border-slate-100 border-t-brand-orange rounded-full animate-spin"></div>
-          <h4 class="text-lg font-bold text-slate-800">Menghasilkan Soal Kurikulum Merdeka</h4>
+          <h4 class="text-lg font-bold text-slate-800">Menghasilkan Soal Sesuai Kurikulum</h4>
           <p class="text-xs text-slate-400 max-w-sm">Mohon tunggu, AI sedang menyusun butir soal ujian berkualitas tinggi berdasarkan parameter...</p>
         </div>
 
@@ -669,27 +692,19 @@
 
   <!-- SCRIPT UTAMA -->
   <script>
-    // API Key & Apps Script ID Config (Berdasarkan parameter)
-    const apiKey = ""; // Diset kosong untuk runtime environment
+    // Config API Key & Apps Script ID
+    const apiKey = ""; 
     const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
     const appscriptURL = "https://script.google.com/macros/s/AKfycbwf1vn-G9ZzZ7gUgla7OmtHWhgiRFClCkrk_hmMg85-Dcm6IINruf9HjwlNz6M-zNzp/exec";
 
-    // DATABASE UTAMA
+    // DATABASE UTAMA (Kredensial Login Lokal dengan Fallback Sync)
     let users = [
-      { id: "1", name: "Administrator Utama", email: "admin@edugen.id", username: "admin", pass: "admin123", role: "Admin", instansi: "Pusat Kurikulum Merdeka", level: "", kelas: "", limit_ganti: 1, isApproved: true },
+      { id: "1", name: "Administrator Utama", email: "admin@edugen.id", username: "admin", pass: "adminwe123", role: "Admin", instansi: "Pusat Kurikulum", level: "", kelas: "", limit_ganti: 1, isApproved: true },
       { id: "2", name: "Rina Kartika, S.Pd.", email: "rina@sekolah.sch.id", username: "rina", pass: "guru123", role: "Pengguna", instansi: "SDN 1 Menteng", level: "SD", kelas: "Kelas 4", limit_ganti: 1, isApproved: true }
     ];
 
     let pendingRegistrations = [];
-
-    // DATABASE VOUCHER LOKAL
-    let vouchersList = [
-      { code: "GURUBARU", discount: 10000, quota: 100, used: 2 },
-      { code: "EDUGENPRO", discount: 20000, quota: 50, used: 0 },
-      { code: "MERDEKA", discount: 50000, quota: 10, used: 1 }
-    ];
-
-    let currentDiscountPrice = 50000; // Harga dasar setelah diskon dari 75rb
+    let currentDiscountPrice = 50000; 
     let activeVoucherCode = "";
 
     let currentUser = null;
@@ -699,8 +714,7 @@
     let fileProofName = "";
     let generatedRawData = null;
 
-    // Initial load
-    window.onload = function() {
+    window.onload = async function() {
       const savedUsers = localStorage.getItem('edugen_users_v2');
       if (savedUsers) {
         users = JSON.parse(savedUsers);
@@ -712,26 +726,75 @@
       if (savedPending) {
         pendingRegistrations = JSON.parse(savedPending);
       } else {
-        pendingRegistrations = [
-          { id: "p1", name: "Hasan Basri, S.Pd.", email: "hasan@smp.sch.id", username: "hasan123", pass: "hasan99", role: "Pengguna", instansi: "SMP Nusantara", phone: "08123456789", proofImage: "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=400", isApproved: false }
-        ];
         localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
       }
       
       switchView('login');
+      
+      // Auto-sinkronisasi data secara tenang dari Google Sheet saat aplikasi pertama dibuka
+      silentCloudSync();
     }
 
-    // FUNGSI MODAL QRIS POP-UP
-    function openQrisModal() {
-      document.getElementById('modal-qris').classList.remove('hidden');
+    // FUNGSI SINKRONISASI SECARA SILENT DI LAYAR BELAKANG UNTUK MEMASTIKAN DATA TERBARU
+    async function silentCloudSync() {
+      try {
+        const response = await fetch(`${appscriptURL}?action=get_data`);
+        if (response.ok) {
+          const cloudData = await response.json();
+          if (cloudData.status === "success") {
+            if (cloudData.users && cloudData.users.length > 0) {
+              users = cloudData.users;
+              localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+            }
+            if (cloudData.pending) {
+              pendingRegistrations = cloudData.pending;
+              localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
+            }
+          }
+        }
+      } catch (err) {
+        console.warn("Silent sync terhambat. Menggunakan cache data lokal.", err);
+      }
     }
 
-    function closeQrisModal() {
-      document.getElementById('modal-qris').classList.add('hidden');
+    // FUNGSI UNTUK MELIHAT ATAU MENYEMBUNYIKAN PASSWORD (MATA PASSWORD)
+    function togglePasswordVisibility(inputId, eyeIconId) {
+      const passwordInput = document.getElementById(inputId);
+      const eyeIcon = document.getElementById(eyeIconId);
+      if (passwordInput.type === "password") {
+        passwordInput.type = "text";
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+      } else {
+        passwordInput.type = "password";
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye');
+      }
     }
 
-    // VERIFIKASI VOUCHER DISKON
-    function verifyDiscountVoucher() {
+    // VALIDASI KECOCOKAN PASSWORD REAL-TIME PADA REGISTRASI
+    function checkPasswordMatch() {
+      const password = document.getElementById('reg-password').value;
+      const confirmPassword = document.getElementById('reg-password-confirm').value;
+      const indicator = document.getElementById('password-match-indicator');
+
+      if (!password && !confirmPassword) {
+        indicator.classList.add('hidden');
+        return;
+      }
+
+      indicator.classList.remove('hidden');
+      if (password === confirmPassword) {
+        indicator.className = "text-xs font-bold text-emerald-600 mt-1 block";
+        indicator.innerHTML = '<i class="fas fa-check-circle mr-1"></i> Kata sandi cocok!';
+      } else {
+        indicator.className = "text-xs font-bold text-rose-500 mt-1 block";
+        indicator.innerHTML = '<i class="fas fa-exclamation-circle mr-1"></i> Kata sandi belum cocok.';
+      }
+    }
+
+    // VERIFIKASI VOUCHER DISKON SINKRON DENGAN DATA GOOGLE SHEET
+    async function verifyDiscountVoucher() {
       const voucherInput = document.getElementById('reg-voucher').value.trim().toUpperCase();
       const statusMsg = document.getElementById('voucher-status-msg');
       const priceDisplay = document.getElementById('display-activation-price');
@@ -741,43 +804,49 @@
         return;
       }
 
-      const foundVoucher = vouchersList.find(v => v.code === voucherInput);
+      statusMsg.className = "text-xs font-bold text-brand-blue animate-pulse";
+      statusMsg.innerText = "Memverifikasi voucher ke cloud Google Sheet...";
+      statusMsg.classList.remove('hidden');
 
-      if (foundVoucher) {
-        if (foundVoucher.used >= foundVoucher.quota) {
+      try {
+        const response = await fetch(`${appscriptURL}?action=verify_voucher&code=${voucherInput}`);
+        if (!response.ok) throw new Error("Koneksi gagal.");
+        
+        const res = await response.json();
+
+        if (res.status === "valid") {
+          const discountAmount = res.discount;
+          currentDiscountPrice = 50000 - discountAmount;
+          if (currentDiscountPrice < 0) currentDiscountPrice = 0;
+
+          activeVoucherCode = res.code;
+
+          statusMsg.className = "text-xs font-bold text-emerald-600";
+          statusMsg.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Voucher "${res.code}" berhasil! Potongan Rp ${discountAmount.toLocaleString('id-ID')}`;
+          
+          priceDisplay.innerText = `Rp ${currentDiscountPrice.toLocaleString('id-ID')}`;
+          priceDisplay.className = "text-3xl font-black text-brand-orange animate-bounce";
+          showToast("Voucher berhasil diterapkan!");
+        } else if (res.status === "exhausted") {
           statusMsg.className = "text-xs font-bold text-rose-500";
-          statusMsg.innerText = "Maaf, kuota kode voucher ini telah habis!";
-          statusMsg.classList.remove('hidden');
-          return;
+          statusMsg.innerText = "Maaf, kuota penggunaan voucher ini telah habis!";
+        } else {
+          statusMsg.className = "text-xs font-bold text-rose-500";
+          statusMsg.innerText = "Kode voucher tidak valid atau sudah kadaluarsa.";
+          
+          currentDiscountPrice = 50000;
+          activeVoucherCode = "";
+          priceDisplay.innerText = "Rp 50.000";
+          priceDisplay.className = "text-3xl font-black text-brand-blue";
         }
-
-        const discountAmount = foundVoucher.discount;
-        currentDiscountPrice = 50000 - discountAmount;
-        if (currentDiscountPrice < 0) currentDiscountPrice = 0;
-
-        activeVoucherCode = foundVoucher.code;
-
-        statusMsg.className = "text-xs font-bold text-emerald-600";
-        statusMsg.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Voucher "${foundVoucher.code}" berhasil digunakan! Potongan sebesar Rp ${discountAmount.toLocaleString('id-ID')}`;
-        statusMsg.classList.remove('hidden');
-
-        priceDisplay.innerText = `Rp ${currentDiscountPrice.toLocaleString('id-ID')}`;
-        priceDisplay.className = "text-3xl font-black text-brand-orange animate-bounce";
-        
-        showToast("Voucher diskon berhasil diterapkan!");
-      } else {
+      } catch (err) {
+        console.warn("Validasi cloud terhambat.", err);
         statusMsg.className = "text-xs font-bold text-rose-500";
-        statusMsg.innerText = "Kode voucher tidak valid atau tidak ditemukan.";
-        statusMsg.classList.remove('hidden');
-        
-        currentDiscountPrice = 50000;
-        activeVoucherCode = "";
-        priceDisplay.innerText = "Rp 50.000";
-        priceDisplay.className = "text-3xl font-black text-brand-blue";
+        statusMsg.innerText = "Gagal memverifikasi voucher dari cloud.";
       }
     }
 
-    // Navigasi View
+    // Navigasi Tampilan
     function switchView(viewName) {
       document.getElementById('view-login').classList.add('hidden');
       document.getElementById('view-register').classList.add('hidden');
@@ -787,6 +856,7 @@
         document.getElementById('view-login').classList.remove('hidden');
       } else if (viewName === 'register') {
         document.getElementById('view-register').classList.remove('hidden');
+        document.getElementById('password-match-indicator').classList.add('hidden');
       } else if (viewName === 'dashboard') {
         document.getElementById('view-dashboard').classList.remove('hidden');
         renderDashboard();
@@ -817,11 +887,14 @@
       }, 4000);
     }
 
-    // LOGIN LOGIC
-    function handleLogin(e) {
+    // LOGIN LOGIC (Mendukung pencarian dinamis real-time)
+    async function handleLogin(e) {
       e.preventDefault();
       const userKey = document.getElementById('login-username').value.trim().toLowerCase();
       const pass = document.getElementById('login-password').value;
+
+      showToast("Memvalidasi akun Anda...");
+      await silentCloudSync();
 
       const user = users.find(u => (u.username.toLowerCase() === userKey || u.email.toLowerCase() === userKey) && u.pass === pass);
 
@@ -872,8 +945,8 @@
       }
     }
 
-    // REGISTER LOGIC (Daftar & Langsung Masuk Antrean Lokal + Google Sheet)
-    function handleRegister(e) {
+    // REGISTER LOGIC (Kirim asinkron & masukkan ke antrean pending lokal)
+    async function handleRegister(e) {
       e.preventDefault();
       const name = document.getElementById('reg-name').value.trim();
       const instansi = document.getElementById('reg-instansi').value.trim();
@@ -881,13 +954,16 @@
       const phone = document.getElementById('reg-phone').value.trim();
       const newUsername = document.getElementById('reg-username').value.trim().toLowerCase();
       const newPassword = document.getElementById('reg-password').value;
+      const confirmPassword = document.getElementById('reg-password-confirm').value;
+
+      // Proteksi Tambahan Validasi Kecocokan Kata Sandi
+      if (newPassword !== confirmPassword) {
+        showToast("Konfirmasi kata sandi tidak cocok. Harap periksa kembali!", "error");
+        return;
+      }
 
       if (users.some(u => u.email.toLowerCase() === email.toLowerCase() || u.username.toLowerCase() === newUsername)) {
         showToast("Username atau Email telah digunakan!", "error");
-        return;
-      }
-      if (pendingRegistrations.some(u => u.email.toLowerCase() === email.toLowerCase() || u.username.toLowerCase() === newUsername)) {
-        showToast("Data registrasi ini sudah ada di antrean persetujuan!", "error");
         return;
       }
 
@@ -910,14 +986,8 @@
         nominalBayar: currentDiscountPrice
       };
 
-      // Simpan langsung di daftar antrean lokal agar langsung muncul di sisi admin
       pendingRegistrations.push(tempRegistration);
       localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
-
-      if (activeVoucherCode) {
-        const vIdx = vouchersList.findIndex(v => v.code === activeVoucherCode);
-        if (vIdx !== -1) vouchersList[vIdx].used += 1;
-      }
 
       const payload = {
         action: "register",
@@ -934,67 +1004,68 @@
         nominalBayar: currentDiscountPrice
       };
 
-      showToast("Mengirim data registrasi & mengunggah bukti transfer...");
+      showToast("Mengirim pengajuan pendaftaran...");
 
-      fetch(appscriptURL, {
-        method: "POST",
-        mode: "no-cors", // Digunakan agar tidak terhambat CORS sandbox browser
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      }).then(() => {
-        showToast("Registrasi Berhasil! Pembayaran Anda sedang diproses oleh admin.");
-        switchView('login');
-        document.getElementById('form-register').reset();
-        document.getElementById('file-name-display').innerText = "";
-        document.getElementById('voucher-status-msg').classList.add('hidden');
-        document.getElementById('display-activation-price').innerText = "Rp 50.000";
-        fileProofBase64 = "";
-        fileProofName = "";
-        currentDiscountPrice = 50000;
-        activeVoucherCode = "";
-      }).catch(err => {
-        console.warn("Koneksi gagal ke Google Sheet, data dicatat di lokal.", err);
-        showToast("Registrasi dicatat lokal. Harap hubungi admin untuk aktivasi.");
-        switchView('login');
-      });
+      try {
+        const response = await fetch(appscriptURL, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        
+        const result = await response.json();
+        if (result.status === "success") {
+          showToast("Registrasi Berhasil! Pembayaran Anda akan divalidasi oleh admin.");
+        } else {
+          showToast("Disimpan Lokal: " + result.message, "error");
+        }
+      } catch (err) {
+        console.warn("Koneksi cloud terhambat. Data pendaftaran diarsipkan secara lokal.", err);
+        showToast("Registrasi Anda dicatat secara lokal. Hubungi admin untuk aktivasi.");
+      }
+
+      switchView('login');
+      document.getElementById('form-register').reset();
+      document.getElementById('file-name-display').innerText = "";
+      document.getElementById('voucher-status-msg').classList.add('hidden');
+      document.getElementById('display-activation-price').innerText = "Rp 50.000";
+      fileProofBase64 = "";
+      fileProofName = "";
+      currentDiscountPrice = 50000;
+      activeVoucherCode = "";
     }
 
-    // FUNGSI SINKRONISASI AKTIF DARI GOOGLE SHEET (BARU & REAL-TIME)
+    // SINKRONISASI DATA REAL-TIME DARI GOOGLE SHEET (ADMIN INTERACTIVE CLICK)
     async function syncDataFromCloud() {
       const syncIcon = document.getElementById('sync-icon');
       syncIcon.classList.add('animate-spin');
-      showToast("Menghubungkan ke Google Sheet...");
+      showToast("Menghubungkan ke Google Sheet cloud...");
 
       try {
-        // Mengambil data terupdate melalui endpoint Google Apps Script doGet()
         const response = await fetch(`${appscriptURL}?action=get_data`);
-        if (!response.ok) throw new Error("Koneksi Apps Script ditolak.");
+        if (!response.ok) throw new Error("Akses Apps Script ditolak.");
         const cloudData = await response.json();
 
         if (cloudData.status === "success") {
-          // Sinkronisasi daftar user aktif
-          if (cloudData.users && cloudData.users.length > 0) {
+          if (cloudData.users) {
             users = cloudData.users;
             localStorage.setItem('edugen_users_v2', JSON.stringify(users));
           }
-
-          // Sinkronisasi daftar pending yang belum di-approve
-          if (cloudData.pending && cloudData.pending.length > 0) {
+          if (cloudData.pending) {
             pendingRegistrations = cloudData.pending;
             localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
           } else {
             pendingRegistrations = [];
             localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
           }
-
-          showToast("Koneksi Sukses! Data pendaftar & pengguna berhasil diperbarui dari Google Sheet.");
+          showToast("Sinkronisasi Selesai! Seluruh data terbaru berhasil ditarik.");
           renderDashboard();
         } else {
-          showToast("Gagal mengambil data: " + cloudData.message, "error");
+          showToast("Gagal menyinkronkan: " + cloudData.message, "error");
         }
       } catch (err) {
-        console.error("Cloud Sync Error: ", err);
-        showToast("Gagal menyinkronkan data. Pastikan Apps Script Web App telah dideploy sebagai 'Anyone'.", "error");
+        console.error(err);
+        showToast("Gagal menghubungi Google Sheet cloud.", "error");
       } finally {
         syncIcon.classList.remove('animate-spin');
       }
@@ -1021,7 +1092,6 @@
         classInfoCard.classList.add('hidden');
         selectSetupLevel('SD'); 
       } else {
-        setupCard.add && setupCard.classList.add('hidden');
         setupCard.classList.add('hidden');
         classInfoCard.classList.remove('hidden');
         document.getElementById('display-class-info').innerText = `${currentUser.level} - ${currentUser.kelas}`;
@@ -1258,7 +1328,6 @@
       
       img.src = imageSource;
       
-      // Jika bukti berupa url google drive asli, sediakan link redirectnya
       if (imageSource.startsWith('http')) {
         downloadLink.href = imageSource;
         downloadLink.classList.remove('hidden');
@@ -1273,32 +1342,50 @@
       document.getElementById('modal-proof').classList.add('hidden');
     }
 
-    function adminApproveUser(id) {
+    // AKTIVASI AKUN OLEH ADMIN (Langsung sync dengan cloud)
+    async function adminApproveUser(id) {
       const pIndex = pendingRegistrations.findIndex(p => p.id === id);
       if (pIndex !== -1) {
         const approvedUser = pendingRegistrations[pIndex];
         approvedUser.isApproved = true;
 
-        users.push(approvedUser);
-        localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+        showToast("Memproses persetujuan akun di cloud...");
 
-        pendingRegistrations.splice(pIndex, 1);
-        localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
+        try {
+          const response = await fetch(appscriptURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              action: "approve",
+              userId: approvedUser.id
+            })
+          });
+          
+          const res = await response.json();
+          if (res.status === "success") {
+            // Pindahkan ke daftar user aktif secara lokal
+            users.push(approvedUser);
+            localStorage.setItem('edugen_users_v2', JSON.stringify(users));
 
-        showToast(`Akun ${approvedUser.name} sukses diaktivasi!`);
+            pendingRegistrations.splice(pIndex, 1);
+            localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
+
+            showToast(`Akun ${approvedUser.name} berhasil diaktivasi secara instan!`);
+          } else {
+            showToast("Gagal mengaktivasi di server: " + res.message, "error");
+          }
+        } catch (err) {
+          console.warn("Koneksi cloud terhambat. Melakukan aktivasi lokal.", err);
+          
+          users.push(approvedUser);
+          localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+          pendingRegistrations.splice(pIndex, 1);
+          localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
+          
+          showToast(`Akun ${approvedUser.name} diaktifkan secara lokal.`);
+        }
+        
         renderDashboard();
-
-        // Mengirim instruksi approval ke cloud Google Sheet
-        fetch(appscriptURL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            action: "approve",
-            userId: approvedUser.id
-          })
-        }).then(res => {
-          showToast("Data pendaftar telah tersinkron di Google Sheet cloud.");
-        });
       }
     }
 
@@ -1397,7 +1484,7 @@
       document.getElementById('result-ready').classList.add('hidden');
       document.getElementById('result-loading').classList.remove('hidden');
 
-      const systemInstruction = "Anda adalah AI generator soal akademis profesional untuk sekolah dasar (SD) dan sekolah menengah pertama (SMP) di Indonesia. Buatlah kisi-kisi, lembar soal, dan pembahasan jawaban secara akurat sesuai standar penilaian Kurikulum Merdeka.";
+      const systemInstruction = "Anda adalah AI generator soal akademis profesional untuk sekolah dasar (SD) dan sekolah menengah pertama (SMP) di Indonesia. Buatlah kisi-kisi, lembar soal, dan pembahasan jawaban secara akurat sesuai standar penilaian Kurikulum.";
       
       const userPrompt = `
       Buatlah evaluasi soal dalam bentuk JSON terstruktur murni:
@@ -1436,7 +1523,7 @@
 
       for (let attempt = 1; attempt <= maxRetries; attempt++) {
         try {
-          const response = await fetch(`https://generativomodel.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
+          const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({
@@ -1498,23 +1585,9 @@
             })
           });
 
-          // Fallback if specific domain blocked
-          let actualResponse = response;
-          if (!actualResponse.ok) {
-             actualResponse = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                  contents: [{ parts: [{ text: userPrompt }] }],
-                  systemInstruction: { parts: [{ text: systemInstruction }] },
-                  generationConfig: { responseMimeType: "application/json" }
-                })
-             });
-          }
-
-          if (!actualResponse.ok) throw new Error("Gagal mengambil respon API.");
+          if (!response.ok) throw new Error("Gagal mengambil respon API.");
           
-          const resultJson = await actualResponse.json();
+          const resultJson = await response.json();
           resultText = resultJson.candidates?.[0]?.content?.parts?.[0]?.text;
           success = true;
           break;
