@@ -64,7 +64,7 @@
 
   <!-- MODAL POP-UP QRIS BESAR -->
   <div id="modal-qris" class="hidden fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-md flex items-center justify-center p-4" onclick="closeQrisModal()">
-    <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl border border-slate-100 space-y-4 relative" onclick="event.stopPropagation()">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border border-slate-100 space-y-4 relative" onclick="event.stopPropagation()">
       <button onclick="closeQrisModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-2 rounded-full hover:bg-slate-100 transition-all">
         <i class="fas fa-times text-xl"></i>
       </button>
@@ -80,10 +80,10 @@
         <p class="text-xs font-extrabold text-slate-900 text-center uppercase">WAHANA EDUKASI</p>
         <p class="text-[9px] text-slate-500 text-center font-semibold mb-4">NMID: ID1026474822131</p>
         
-        <img src="https://raw.githubusercontent.com/wahanaedukasi/GeneratorSoal/refs/heads/main/QRIS%20Wahana%20Edukasi.jpg" 
+        <img src="https://github.com/wahanaedukasi/GeneratorSoal/blob/main/QRIS%20Wahana%20Edukasi.jpg?raw=true" 
              alt="QRIS Wahana Edukasi Besar" 
-             class="w-72 h-72 object-contain"
-             onerror="this.onerror=null; this.src='https://placehold.co/300x300/ffffff/000000?text=Scan+QRIS';">
+             class="w-80 h-80 object-contain rounded-xl"
+             onerror="this.onerror=null; this.src='https://placehold.co/400x400/ffffff/000000?text=Scan+QRIS';">
              
         <p class="text-[10px] font-semibold text-slate-400 mt-4 text-center">Scan QRIS Wahana Edukasi</p>
       </div>
@@ -276,8 +276,8 @@
             </p>
           </div>
           
-          <!-- IMAGE QR CODE ASLI BERDASARKAN LINK USER -->
-          <div class="w-64 bg-white p-5 rounded-2xl border border-sky-200 shadow-lg flex flex-col items-center">
+          <!-- IMAGE QR CODE ASLI (UKURAN DIPERBESAR) -->
+          <div class="w-72 bg-white p-5 rounded-2xl border border-sky-200 shadow-lg flex flex-col items-center">
             <div class="w-full flex justify-between items-center mb-1.5 border-b border-slate-100 pb-1.5">
               <span class="text-[10px] font-black tracking-tight text-slate-900">QRIS</span>
               <span class="text-[8px] font-bold text-slate-400 tracking-widest">GPN</span>
@@ -286,11 +286,12 @@
             <p class="text-[10px] font-bold text-slate-800 text-center uppercase tracking-wide">WAHANA EDUKASI</p>
             <p class="text-[8px] text-slate-500 text-center font-semibold mb-3">NMID: ID1026474822131</p>
 
-            <div onclick="openQrisModal()" class="bg-slate-50 p-1.5 rounded-xl border border-slate-200 overflow-hidden flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95 transition-all duration-300 shadow-sm relative group">
-              <img src="https://raw.githubusercontent.com/wahanaedukasi/GeneratorSoal/refs/heads/main/QRIS%20Wahana%20Edukasi.jpg" 
+            <div onclick="openQrisModal()" class="bg-slate-50 p-2 rounded-xl border border-slate-200 overflow-hidden flex items-center justify-center cursor-pointer hover:scale-105 active:scale-95 transition-all duration-300 shadow-sm relative group">
+              <!-- Memperbesar ukuran dari w-44 h-44 ke w-52 h-52 -->
+              <img src="https://github.com/wahanaedukasi/GeneratorSoal/blob/main/QRIS%20Wahana%20Edukasi.jpg?raw=true" 
                    alt="QRIS Pembayaran Wahana Edukasi" 
-                   class="w-44 h-44 object-contain transition-all duration-300 group-hover:brightness-95"
-                   onerror="this.onerror=null; this.src='https://placehold.co/180x180/ffffff/000000?text=Scan+QRIS';">
+                   class="w-52 h-52 object-contain transition-all duration-300 group-hover:brightness-95"
+                   onerror="this.onerror=null; this.src='https://placehold.co/240x240/ffffff/000000?text=Scan+QRIS';">
               <div class="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
                 <span class="bg-white/90 text-slate-900 font-extrabold px-3 py-1.5 rounded-lg text-[10px] shadow flex items-center gap-1.5">
                   <i class="fas fa-search-plus"></i> Perbesar
@@ -330,79 +331,85 @@
     </div>
 
 
-    <!-- 3. DASHBOARD PENGGUNA & ADMIN -->
-    <div id="view-dashboard" class="hidden w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-start transition-all">
+    <!-- 3. DASHBOARD PENGGUNA & ADMIN (FLOW REVISED TO FULL WIDTH VERTICAL FLOW) -->
+    <div id="view-dashboard" class="hidden w-full max-w-7xl mx-auto space-y-6 transition-all">
       
-      <!-- KIRI: FORM GENERATOR / PANEL ADMIN -->
-      <div class="lg:col-span-5 space-y-6">
-        
-        <!-- PEMILIHAN KELAS AWAL -->
-        <div id="setup-class-card" class="hidden bg-gradient-to-br from-slate-900 via-brand-dark to-slate-900 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden">
-          <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-orange/10 rounded-full blur-xl"></div>
-          <div class="relative z-10">
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-yellow text-slate-950 mb-3">
-              <i class="fas fa-exclamation-circle mr-1"></i> Pengaturan Kelas Pertama
-            </span>
-            <h3 class="text-xl font-bold tracking-tight">Pilih Tingkatan Kelas Anda</h3>
-            <p class="text-slate-300 text-xs mt-1 mb-4">Pilihlah jenjang pendidikan mengajar Anda. Harap diperhatikan bahwa Anda hanya memiliki <span class="font-bold text-brand-yellow">1 kali kesempatan saja</span> untuk mengubah pilihan kelas di kemudian hari.</p>
-            
-            <div class="space-y-4">
-              <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Tingkat Pendidikan</label>
-                <div class="grid grid-cols-2 gap-2">
-                  <button type="button" onclick="selectSetupLevel('SD')" id="btn-setup-level-sd" class="py-2.5 px-4 rounded-xl text-sm font-bold border border-white/20 hover:bg-white/10 transition-all text-center">
-                    SD (Kelas 1 - 6)
-                  </button>
-                  <button type="button" onclick="selectSetupLevel('SMP')" id="btn-setup-level-smp" class="py-2.5 px-4 rounded-xl text-sm font-bold border border-white/20 hover:bg-white/10 transition-all text-center">
-                    SMP (Kelas 7 - 9)
-                  </button>
-                </div>
+      <!-- SINKRONISASI KELAS (Setup atau Ganti Kelas) - SEKARANG FULL-WIDTH -->
+      <div id="setup-class-card" class="hidden bg-gradient-to-br from-slate-900 via-brand-dark to-slate-900 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden">
+        <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-orange/10 rounded-full blur-xl"></div>
+        <div class="relative z-10 max-w-3xl">
+          <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-yellow text-slate-950 mb-3">
+            <i class="fas fa-exclamation-circle mr-1"></i> Pengaturan Kelas Pengajaran
+          </span>
+          <h3 class="text-xl font-bold tracking-tight">Setel Kelas Guru Anda</h3>
+          <p class="text-slate-300 text-xs mt-1 mb-4">Pilihlah tingkatan kelas yang akan diajarkan. Anda hanya diperkenankan mengubah setelan kelas ini **maksimal 1 kali selamanya**. Pastikan memilih dengan benar.</p>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Tingkat Pendidikan</label>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="selectSetupLevel('SD')" id="btn-setup-level-sd" class="py-2.5 px-4 rounded-xl text-sm font-bold border border-white/20 hover:bg-white/10 transition-all text-center">
+                  SD (Kelas 1 - 6)
+                </button>
+                <button type="button" onclick="selectSetupLevel('SMP')" id="btn-setup-level-smp" class="py-2.5 px-4 rounded-xl text-sm font-bold border border-white/20 hover:bg-white/10 transition-all text-center">
+                  SMP (Kelas 7 - 9)
+                </button>
               </div>
+            </div>
 
-              <div>
-                <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Nomor Kelas</label>
-                <select id="setup-class-select" class="w-full bg-white/10 border border-white/20 rounded-xl px-3 py-2.5 text-sm outline-none text-white focus:bg-slate-800 transition-all">
-                  <option class="text-slate-900" value="">-- Pilih Kelas --</option>
-                </select>
-              </div>
+            <div>
+              <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">Nomor Kelas</label>
+              <select id="setup-class-select" class="w-full bg-white/10 border border-white/20 rounded-xl px-3 py-2.5 text-sm outline-none text-white focus:bg-slate-800 transition-all">
+                <option class="text-slate-900" value="">-- Pilih Kelas --</option>
+              </select>
+            </div>
 
-              <button onclick="saveInitialClass()" class="w-full bg-gradient-to-r from-brand-orange to-brand-yellow text-slate-900 font-extrabold py-3 rounded-xl transition-all text-sm shadow-md">
-                Konfirmasi & Kunci Pilihan Kelas
+            <div>
+              <button onclick="saveInitialClass()" class="w-full bg-gradient-to-r from-brand-orange to-brand-yellow text-slate-900 font-extrabold py-2.5 rounded-xl transition-all text-sm shadow-md">
+                Konfirmasi & Kunci Kelas
               </button>
             </div>
           </div>
         </div>
+      </div>
 
-        <!-- INFO USER PREMIUM & EDIT KELAS -->
-        <div id="class-info-card" class="hidden bg-white border border-slate-100 rounded-3xl p-6 shadow-md">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-              <div class="w-10 h-10 rounded-xl bg-sky-50 text-brand-blue flex items-center justify-center text-lg border border-sky-100">
-                <i class="fas fa-graduation-cap"></i>
-              </div>
-              <div>
-                <span class="text-[10px] text-slate-400 font-bold uppercase">Kelas Aktif Saat Ini</span>
-                <h4 id="display-class-info" class="text-base font-extrabold text-slate-800"></h4>
-              </div>
+      <!-- KARTU UTAMA TAMPILAN KELAS AKTIF (FULL-WIDTH) -->
+      <div id="class-info-card" class="hidden bg-white border border-slate-100 rounded-3xl p-6 shadow-md">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-3">
+            <div class="w-10 h-10 rounded-xl bg-sky-50 text-brand-blue flex items-center justify-center text-lg border border-sky-100">
+              <i class="fas fa-graduation-cap"></i>
             </div>
-            
-            <button id="btn-edit-class" onclick="enableClassEdit()" class="text-xs font-bold text-brand-orange hover:text-orange-700 flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-orange-50 hover:bg-orange-100 transition-all">
-              <i class="fas fa-edit"></i>
-              <span>Ubah (<span id="edit-limit-count">1</span> tersisa)</span>
-            </button>
+            <div>
+              <span class="text-[10px] text-slate-400 font-bold uppercase">Tingkatan & Kelas Terpilih</span>
+              <h4 id="display-class-info" class="text-base font-extrabold text-slate-800"></h4>
+            </div>
           </div>
+          
+          <!-- Tombol Ubah Kelas (Strict 1 kali pakai selamanya) -->
+          <button id="btn-edit-class" onclick="enableClassEdit()" class="text-xs font-bold text-brand-orange hover:text-orange-700 flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-orange-50 hover:bg-orange-100 transition-all">
+            <i class="fas fa-edit"></i>
+            <span id="edit-button-text">Ganti Kelas (1 tersisa)</span>
+          </button>
         </div>
+      </div>
 
-        <!-- GENERATOR FORM -->
-        <div class="bg-white border border-slate-100 rounded-3xl p-6 shadow-md space-y-5">
-          <div class="border-b border-slate-100 pb-4">
+      <!-- GENERATOR FORM (TAMPILAN LANDSCAPE DI BAGIAN ATAS) -->
+      <div class="bg-white border border-slate-100 rounded-3xl p-6 shadow-md space-y-5">
+        <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
+          <div>
             <h3 class="text-lg font-bold text-slate-900 flex items-center space-x-2">
               <span class="w-1.5 h-6 bg-brand-orange rounded-full"></span>
               <span>Parameter Pembuatan Soal</span>
             </h3>
-            <p class="text-slate-400 text-xs mt-0.5">Konfigurasikan preferensi kriteria soal ujian</p>
+            <p class="text-slate-400 text-xs mt-0.5">Konfigurasikan preferensi kriteria pembuatan soal akademis secara horizontal</p>
           </div>
+        </div>
 
+        <!-- FORM LANDSCAPE GRID SYSTEM -->
+        <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 items-start">
+          
+          <!-- KOLOM 1: MATA PELAJARAN & JUMLAH SOAL -->
           <div class="space-y-4">
             <div>
               <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Mata Pelajaran</label>
@@ -410,155 +417,150 @@
                 <option value="">-- Pilih Mata Pelajaran --</option>
               </select>
             </div>
-
-            <!-- Kolom Memasukkan Materi Pokok (Multientry) -->
-            <div>
-              <div class="flex justify-between items-center mb-2">
-                <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Materi Pokok</label>
-                <span class="text-[10px] text-brand-blue bg-sky-50 px-2 py-0.5 rounded font-bold">Bisa Multi-Materi</span>
-              </div>
-              <div class="flex space-x-2 mb-2">
-                <input type="text" id="materi-input" class="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="Ketik lalu klik (+)">
-                <button type="button" onclick="addMateri()" class="bg-brand-blue hover:bg-sky-700 text-white px-4 rounded-xl transition-colors">
-                  <i class="fas fa-plus"></i>
-                </button>
-              </div>
-              <div id="materi-badge-container" class="flex flex-wrap gap-1.5 p-2 bg-slate-50 rounded-xl border border-slate-100 min-h-[40px]">
-                <span class="text-xs text-slate-400 italic self-center px-1">Belum ada materi pokok yang dimasukkan</span>
-              </div>
-            </div>
-
-            <!-- Jenis Soal -->
-            <div>
-              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Jenis Soal (Pilih satu atau lebih)</label>
-              <div class="grid grid-cols-2 gap-3">
-                <label class="relative flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none transition-all">
-                  <input type="checkbox" name="gen-type" value="Pilihan Ganda" checked class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
-                  <span class="text-xs font-medium text-slate-700">Pilihan Ganda</span>
-                </label>
-                <label class="relative flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none transition-all">
-                  <input type="checkbox" name="gen-type" value="Isian Singkat" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
-                  <span class="text-xs font-medium text-slate-700">Isian Singkat</span>
-                </label>
-                <label class="relative flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none transition-all">
-                  <input type="checkbox" name="gen-type" value="Pilihan Ganda Kompleks" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
-                  <span class="text-xs font-medium text-slate-700">Pilihan Ganda Kompleks</span>
-                </label>
-                <label class="relative flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none transition-all">
-                  <input type="checkbox" name="gen-type" value="Benar/Salah" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
-                  <span class="text-xs font-medium text-slate-700">Benar / Salah</span>
-                </label>
-                <label class="relative flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none col-span-2 transition-all">
-                  <input type="checkbox" name="gen-type" value="Uraian/Essay" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
-                  <span class="text-xs font-medium text-slate-700">Uraian / Esai</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Level Kognitif -->
-            <div>
-              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Level Soal / Kognitif (Pilih satu atau lebih)</label>
-              <div class="grid grid-cols-3 gap-2">
-                <label class="flex items-center justify-center p-2 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none transition-all">
-                  <input type="checkbox" name="gen-level-check" value="LOTS" checked class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
-                  <span class="text-xs font-semibold text-slate-600">LOTS</span>
-                </label>
-                <label class="flex items-center justify-center p-2 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none transition-all">
-                  <input type="checkbox" name="gen-level-check" value="MOTS" checked class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
-                  <span class="text-xs font-semibold text-slate-600">MOTS</span>
-                </label>
-                <label class="flex items-center justify-center p-2 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none transition-all">
-                  <input type="checkbox" name="gen-level-check" value="HOTS" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
-                  <span class="text-xs font-semibold text-slate-600">HOTS</span>
-                </label>
-              </div>
-            </div>
-
-            <!-- Kolom Perintah Tambahan Spesifik -->
-            <div>
-              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Instruksi / Perintah Tambahan (Opsional)</label>
-              <textarea id="gen-custom-prompt" rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-xs outline-none resize-none" placeholder="Contoh: Dari 20 soal yang dibuat, tolong sediakan 5 soal isian singkat dan sisanya adalah pilihan ganda."></textarea>
-            </div>
-
-            <!-- Jumlah Soal -->
             <div>
               <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Jumlah Soal</label>
               <input type="number" id="gen-count" min="1" max="25" value="5" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none">
             </div>
           </div>
 
-          <!-- Tombol Generate -->
-          <button id="btn-generate" onclick="generateQuestions()" class="w-full bg-gradient-to-r from-brand-orange to-brand-yellow hover:opacity-90 text-slate-900 font-extrabold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-3">
+          <!-- KOLOM 2: MATERI POKOK (MULTI-ENTRY) -->
+          <div class="space-y-3">
+            <div class="flex justify-between items-center">
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider">Materi Pokok</label>
+              <span class="text-[10px] text-brand-blue bg-sky-50 px-2 py-0.5 rounded font-bold">Multi-Materi</span>
+            </div>
+            <div class="flex space-x-2">
+              <input type="text" id="materi-input" class="flex-1 px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="Ketik materi...">
+              <button type="button" onclick="addMateri()" class="bg-brand-blue hover:bg-sky-700 text-white px-4 rounded-xl transition-colors">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+            <div id="materi-badge-container" class="flex flex-wrap gap-1.5 p-2 bg-slate-50 rounded-xl border border-slate-100 min-h-[75px] max-h-[120px] overflow-y-auto">
+              <span class="text-xs text-slate-400 italic self-center px-1">Belum ada materi</span>
+            </div>
+          </div>
+
+          <!-- KOLOM 3: JENIS SOAL (CHECKBOXES) -->
+          <div>
+            <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Jenis Soal (Bisa Pilih Banyak)</label>
+            <div class="grid grid-cols-1 gap-2 max-h-[160px] overflow-y-auto pr-1">
+              <label class="flex items-center p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-all">
+                <input type="checkbox" name="gen-type" value="Pilihan Ganda" checked class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                <span class="text-xs text-slate-700">Pilihan Ganda</span>
+              </label>
+              <label class="flex items-center p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-all">
+                <input type="checkbox" name="gen-type" value="Isian Singkat" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                <span class="text-xs text-slate-700">Isian Singkat</span>
+              </label>
+              <label class="flex items-center p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-all">
+                <input type="checkbox" name="gen-type" value="Pilihan Ganda Kompleks" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                <span class="text-xs text-slate-700">PG Kompleks</span>
+              </label>
+              <label class="flex items-center p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-all">
+                <input type="checkbox" name="gen-type" value="Benar/Salah" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                <span class="text-xs text-slate-700">Benar / Salah</span>
+              </label>
+              <label class="flex items-center p-2.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-all">
+                <input type="checkbox" name="gen-type" value="Uraian/Essay" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                <span class="text-xs text-slate-700">Uraian / Esai</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- KOLOM 4: LEVEL KOGNITIF & PERINTAH KHUSUS -->
+          <div class="space-y-4">
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Level Kognitif (Pilih Banyak)</label>
+              <div class="grid grid-cols-3 gap-1.5">
+                <label class="flex items-center justify-center py-2 px-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-all">
+                  <input type="checkbox" name="gen-level-check" value="LOTS" checked class="w-3.5 h-3.5 text-brand-orange border-slate-300 rounded mr-1">
+                  <span class="text-xs font-bold text-slate-600">LOTS</span>
+                </label>
+                <label class="flex items-center justify-center py-2 px-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-all">
+                  <input type="checkbox" name="gen-level-check" value="MOTS" checked class="w-3.5 h-3.5 text-brand-orange border-slate-300 rounded mr-1">
+                  <span class="text-xs font-bold text-slate-600">MOTS</span>
+                </label>
+                <label class="flex items-center justify-center py-2 px-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-all">
+                  <input type="checkbox" name="gen-level-check" value="HOTS" class="w-3.5 h-3.5 text-brand-orange border-slate-300 rounded mr-1">
+                  <span class="text-xs font-bold text-slate-600">HOTS</span>
+                </label>
+              </div>
+            </div>
+            
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Instruksi Khusus (Opsional)</label>
+              <textarea id="gen-custom-prompt" rows="2" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:bg-white transition-all text-xs outline-none resize-none" placeholder="Contoh: Minta 5 soal isian, sisanya pilihan ganda."></textarea>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- TOMBOL GENERATE SOAL UTAMA (BARU - INTERAKTIF REVISI) -->
+        <div class="pt-4 border-t border-slate-100 flex justify-end">
+          <button id="btn-generate" onclick="generateQuestions()" class="w-full lg:w-96 bg-gradient-to-r from-brand-orange to-brand-yellow hover:opacity-90 text-slate-900 font-extrabold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-3">
             <i class="fas fa-magic"></i>
-            <span>Hasilkan Soal Otomatis (GenSo AI)</span>
+            <span>Generate Soal Sekarang</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- PANEL ADMINISTRATOR (Hanya Tampil untuk Admin) -->
+      <div id="admin-panel-card" class="hidden bg-white border border-slate-100 rounded-3xl p-6 shadow-md space-y-6">
+        <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
+          <div>
+            <span class="text-xs text-brand-orange font-bold uppercase tracking-widest">Admin Control</span>
+            <h3 class="text-lg font-black text-slate-900 mt-0.5">Kelola Pengguna & Antrean</h3>
+          </div>
+          <button onclick="syncDataFromCloud()" class="bg-brand-blue hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-xl text-xs flex items-center gap-1.5 transition-all shadow-md">
+            <i class="fas fa-sync-alt" id="sync-icon"></i>
+            <span>Sinkron Cloud</span>
           </button>
         </div>
 
-        <!-- PANEL ADMNISTRATOR (KONFIRMASI PENDAFTAR & KELOLA USER) -->
-        <div id="admin-panel-card" class="hidden bg-white border border-slate-100 rounded-3xl p-6 shadow-md space-y-6">
-          <div class="border-b border-slate-100 pb-3 flex justify-between items-center">
-            <div>
-              <span class="text-xs text-brand-orange font-bold uppercase tracking-widest">Admin Control</span>
-              <h3 class="text-lg font-black text-slate-900 mt-0.5">Kelola Pengguna</h3>
-            </div>
-            <!-- SINKRONISASI CLOUD -->
-            <button onclick="syncDataFromCloud()" class="bg-brand-blue hover:bg-sky-700 text-white font-bold py-2 px-3 rounded-xl text-xs flex items-center gap-1.5 transition-all shadow-md">
-              <i class="fas fa-sync-alt" id="sync-icon"></i>
-              <span>Sinkron Cloud</span>
-            </button>
-          </div>
-
-          <!-- Bagian A: Approval Antrean Pendaftaran -->
-          <div class="space-y-3 bg-amber-50/50 p-4 rounded-2xl border border-amber-200">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <!-- Antrean Pending -->
+          <div class="lg:col-span-1 bg-amber-50/50 p-4 rounded-2xl border border-amber-200 h-fit space-y-3">
             <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-2">
               <i class="fas fa-user-clock text-brand-orange animate-pulse"></i>
               <span>Menunggu Persetujuan (<span id="admin-pending-count">0</span>)</span>
             </h4>
-            <div id="admin-pending-list" class="space-y-3 max-h-[220px] overflow-y-auto pr-1">
-              <!-- Antrean disuntik via JS -->
-            </div>
+            <div id="admin-pending-list" class="space-y-3 max-h-[300px] overflow-y-auto pr-1"></div>
           </div>
 
-          <!-- Bagian B: Tambah Pengguna Secara Manual -->
-          <div class="space-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+          <!-- Tambah Manual -->
+          <div class="lg:col-span-1 bg-slate-50 p-4 rounded-2xl border border-slate-100 h-fit space-y-3">
             <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider"><i class="fas fa-plus-circle mr-1"></i> Tambah Pengguna Manual</h4>
             <div class="space-y-2">
-              <input type="text" id="admin-add-name" placeholder="Nama Lengkap" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none focus:border-brand-blue">
-              <input type="email" id="admin-add-email" placeholder="Email" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none focus:border-brand-blue">
-              <input type="text" id="admin-add-username" placeholder="Username Baru" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none focus:border-brand-blue">
-              <input type="password" id="admin-add-pass" placeholder="Password" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none focus:border-brand-blue">
-              <select id="admin-add-role" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none focus:border-brand-blue">
+              <input type="text" id="admin-add-name" placeholder="Nama Lengkap" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none">
+              <input type="email" id="admin-add-email" placeholder="Email" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none">
+              <input type="text" id="admin-add-username" placeholder="Username Baru" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none">
+              <input type="password" id="admin-add-pass" placeholder="Password" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none">
+              <select id="admin-add-role" class="w-full px-3 py-2 bg-white border border-slate-200 rounded-lg text-xs outline-none">
                 <option value="Pengguna">Pengguna Standard</option>
                 <option value="Admin">Admin</option>
               </select>
-              <button onclick="adminAddUser()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 rounded-lg text-xs transition-colors">
-                Daftarkan User
-              </button>
+              <button onclick="adminAddUser()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-2 rounded-lg text-xs transition-colors">Daftarkan User</button>
             </div>
           </div>
 
-          <!-- Bagian C: List Pengguna Terdaftar -->
-          <div class="space-y-2">
+          <!-- List User Aktif -->
+          <div class="lg:col-span-1 space-y-2 h-fit">
             <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider flex justify-between items-center">
               <span>Pengguna Aktif</span>
               <span id="admin-user-count" class="text-[10px] bg-sky-100 text-brand-blue px-2 py-0.5 rounded-full font-bold">0</span>
             </h4>
-            <div id="admin-users-list" class="max-h-[220px] overflow-y-auto space-y-1.5 pr-1 divide-y divide-slate-100">
-              <!-- Baris user aktif di-inject di sini -->
-            </div>
+            <div id="admin-users-list" class="max-h-[300px] overflow-y-auto space-y-1.5 pr-1 divide-y divide-slate-100"></div>
           </div>
         </div>
-
       </div>
 
-      <!-- KANAN: PREVIEW HASIL SOAL -->
-      <div class="lg:col-span-7">
-        
+      <!-- KANAN: PREVIEW HASIL SOAL (DIBAHWAH PARAMETER SEKARANG) -->
+      <div class="w-full">
         <!-- LOADING INDICATOR -->
         <div id="result-loading" class="hidden bg-white border border-slate-100 rounded-3xl p-12 shadow-md text-center flex flex-col items-center justify-center space-y-4">
           <div class="w-16 h-16 border-4 border-slate-100 border-t-brand-orange rounded-full animate-spin"></div>
           <h4 class="text-lg font-bold text-slate-800">Menghasilkan Soal Kurikulum Merdeka</h4>
-          <p class="text-xs text-slate-400 max-w-sm">Mohon tunggu, AI sedang menyusun butir soal ujian berkualitas tinggi berdasarkan parameter...</p>
+          <p class="text-xs text-slate-400 max-w-sm">Mohon tunggu, AI sedang menyusun butir soal ujian berkualitas tinggi berdasarkan kriteria yang dipilih...</p>
         </div>
 
         <!-- NOT READY / KOSONG -->
@@ -568,13 +570,12 @@
           </div>
           <h3 class="text-xl font-bold text-slate-800">Menunggu Parameter Soal</h3>
           <p class="text-slate-400 text-xs max-w-md mx-auto leading-relaxed">
-            Silakan pilih mata pelajaran, masukkan materi pokok, tingkat kognitif, kemudian klik tombol "Hasilkan Soal Otomatis" untuk merender soal pintar.
+            Silakan pilih mata pelajaran, masukkan materi pokok, tingkat kognitif, kemudian klik tombol "Generate Soal Sekarang" di atas untuk merender soal pintar.
           </p>
         </div>
 
         <!-- READY / ADA SOAL -->
-        <div id="result-ready" class="hidden space-y-6">
-          
+        <div id="result-ready" class="hidden space-y-6 max-w-4xl mx-auto">
           <!-- Opsi Centang Bagian yang Mau Didownload -->
           <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm space-y-3">
             <p class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
@@ -610,7 +611,6 @@
 
           <!-- KERTAS PREVIEW -->
           <div class="bg-white border border-slate-200 rounded-3xl shadow-xl p-8 md:p-12 space-y-8 select-text" id="document-print-area">
-            
             <!-- HEADER LEMBARAN SOAL -->
             <div class="border-b-4 border-double border-slate-800 pb-6 text-center space-y-2">
               <h2 class="text-lg font-black tracking-wider uppercase text-slate-900">DINAS PENDIDIKAN DAN KEBUDAYAAN</h2>
@@ -643,9 +643,7 @@
                       <th class="p-3 border border-slate-200 text-center">Level Kognitif</th>
                     </tr>
                   </thead>
-                  <tbody id="preview-kisikisi" class="divide-y divide-slate-200 text-slate-600">
-                    <!-- Dinamis via JS -->
-                  </tbody>
+                  <tbody id="preview-kisikisi" class="divide-y divide-slate-200 text-slate-600"></tbody>
                 </table>
               </div>
             </div>
@@ -656,10 +654,7 @@
                 <span class="px-2 py-0.5 bg-sky-50 text-brand-blue text-[10px] rounded">BAGIAN 2</span>
                 <span>Lembar Soal Ujian</span>
               </h3>
-              
-              <div id="preview-soal" class="space-y-6 text-slate-800 text-sm leading-relaxed">
-                <!-- Dinamis via JS -->
-              </div>
+              <div id="preview-soal" class="space-y-6 text-slate-800 text-sm leading-relaxed"></div>
             </div>
 
             <!-- BAGIAN III: KUNCI JAWABAN -->
@@ -668,15 +663,10 @@
                 <span class="px-2 py-0.5 bg-sky-50 text-brand-blue text-[10px] rounded">BAGIAN 3</span>
                 <span>Kunci Jawaban & Rubrik Penilaian</span>
               </h3>
-              <div id="preview-kunci" class="bg-amber-50/40 p-6 rounded-2xl border border-amber-100 space-y-4 text-slate-800 text-sm">
-                <!-- Dinamis via JS -->
-              </div>
+              <div id="preview-kunci" class="bg-amber-50/40 p-6 rounded-2xl border border-amber-100 space-y-4 text-slate-800 text-sm"></div>
             </div>
-
           </div>
-
         </div>
-
       </div>
 
     </div>
@@ -692,15 +682,11 @@
 
   <!-- SCRIPT UTAMA -->
   <script>
-    // Config API Key & Apps Script ID
     const apiKey = ""; 
     const appId = typeof __app_id !== 'undefined' ? __app_id : 'default-app-id';
-    
-    // SINKRONISASI SEPENUHNYA DENGAN URL APPSCRIPT YANG DIBERIKAN USER
     const appscriptURL = "https://script.google.com/macros/s/AKfycbwf1vn-G9ZzZ7gUgla7OmtHWhgiRFClCkrk_hmMg85-Dcm6IINruf9HjwlNz6M-zNzp/exec";
 
-    // DATABASE UTAMA (Kredensial Login Lokal dengan Fallback Sync)
-    // SINKRONISASI SANDI ADMIN: Sekarang disetel ke "admin123" agar sesuai di frontend & backend
+    // DATABASE UTAMA LOKAL SINKRON
     let users = [
       { id: "1", name: "Administrator Utama", email: "admin@edugen.id", username: "admin", pass: "admin123", role: "Admin", instansi: "Pusat Kurikulum Merdeka", level: "", kelas: "", limit_ganti: 1, isApproved: true },
       { id: "2", name: "Rina Kartika, S.Pd.", email: "rina@sekolah.sch.id", username: "rina", pass: "guru123", role: "Pengguna", instansi: "SDN 1 Menteng", level: "SD", kelas: "Kelas 4", limit_ganti: 1, isApproved: true }
@@ -733,12 +719,9 @@
       }
       
       switchView('login');
-      
-      // Auto-sinkronisasi data secara tenang dari Google Sheet saat aplikasi pertama dibuka
       await silentCloudSync();
     }
 
-    // FUNGSI SINKRONISASI SECARA SILENT DI LAYAR BELAKANG UNTUK MEMASTIKAN DATA TERBARU
     async function silentCloudSync() {
       try {
         const response = await fetch(`${appscriptURL}?action=get_data`);
@@ -760,7 +743,6 @@
       }
     }
 
-    // FUNGSI UNTUK MELIHAT ATAU MENYEMBUNYIKAN PASSWORD (MATA PASSWORD)
     function togglePasswordVisibility(inputId, eyeIconId) {
       const passwordInput = document.getElementById(inputId);
       const eyeIcon = document.getElementById(eyeIconId);
@@ -775,7 +757,6 @@
       }
     }
 
-    // VALIDASI KECOCOKAN PASSWORD REAL-TIME PADA REGISTRASI
     function checkPasswordMatch() {
       const password = document.getElementById('reg-password').value;
       const confirmPassword = document.getElementById('reg-password-confirm').value;
@@ -796,7 +777,6 @@
       }
     }
 
-    // VERIFIKASI VOUCHER DISKON SINKRON DENGAN DATA GOOGLE SHEET
     async function verifyDiscountVoucher() {
       const voucherInput = document.getElementById('reg-voucher').value.trim().toUpperCase();
       const statusMsg = document.getElementById('voucher-status-msg');
@@ -808,13 +788,12 @@
       }
 
       statusMsg.className = "text-xs font-bold text-brand-blue animate-pulse";
-      statusMsg.innerText = "Memverifikasi voucher ke cloud Google Sheet...";
+      statusMsg.innerText = "Memverifikasi voucher ke cloud...";
       statusMsg.classList.remove('hidden');
 
       try {
         const response = await fetch(`${appscriptURL}?action=verify_voucher&code=${voucherInput}`);
         if (!response.ok) throw new Error("Koneksi gagal.");
-        
         const res = await response.json();
 
         if (res.status === "valid") {
@@ -849,7 +828,6 @@
       }
     }
 
-    // Navigasi Tampilan
     function switchView(viewName) {
       document.getElementById('view-login').classList.add('hidden');
       document.getElementById('view-register').classList.add('hidden');
@@ -866,31 +844,14 @@
       }
     }
 
-    // TOAST NOTIFIER
-    function showToast(message, type = 'success') {
-      const toast = document.getElementById('toast');
-      const msgEl = document.getElementById('toast-message');
-      const iconEl = document.getElementById('toast-icon');
-
-      msgEl.innerText = message;
-      if (type === 'success') {
-        iconEl.innerHTML = '<i class="fas fa-check-circle"></i>';
-        iconEl.className = 'text-brand-yellow text-lg';
-      } else {
-        iconEl.innerHTML = '<i class="fas fa-exclamation-triangle"></i>';
-        iconEl.className = 'text-brand-orange text-lg';
-      }
-
-      toast.classList.remove('translate-y-[-150%]');
-      toast.classList.add('translate-y-0');
-
-      setTimeout(() => {
-        toast.classList.remove('translate-y-0');
-        toast.classList.add('translate-y-[-150%]');
-      }, 4000);
+    function openQrisModal() {
+      document.getElementById('modal-qris').classList.remove('hidden');
     }
 
-    // LOGIN LOGIC (SINKRONISASI & VALIDASI AKUN ADMIN / USER MUTAKHIR)
+    function closeQrisModal() {
+      document.getElementById('modal-qris').classList.add('hidden');
+    }
+
     async function handleLogin(e) {
       e.preventDefault();
       
@@ -904,26 +865,8 @@
       const pass = document.getElementById('login-password').value;
 
       showToast("Menghubungkan ke server untuk validasi...");
-      
-      // Ambil data user aktif terbaru langsung dari Cloud Google Sheet saat login ditekan
-      try {
-        const response = await fetch(`${appscriptURL}?action=get_data`);
-        if (response.ok) {
-          const cloudData = await response.json();
-          if (cloudData.status === "success" && cloudData.users) {
-            users = cloudData.users;
-            localStorage.setItem('edugen_users_v2', JSON.stringify(users));
-          }
-          if (cloudData.pending) {
-            pendingRegistrations = cloudData.pending;
-            localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
-          }
-        }
-      } catch (err) {
-        console.warn("Gagal sinkronisasi data cloud real-time saat login. Menggunakan data lokal.", err);
-      }
+      await silentCloudSync();
 
-      // Cari user di dalam daftar lokal yang telah diperbarui dari cloud
       const user = users.find(u => (u.username.toLowerCase() === userKey || u.email.toLowerCase() === userKey) && u.pass === pass);
 
       if (loginButton) {
@@ -950,7 +893,6 @@
       }
     }
 
-    // LOGOUT LOGIC
     function logout() {
       currentUser = null;
       document.getElementById('header-user-menu').classList.add('hidden');
@@ -958,7 +900,6 @@
       showToast("Berhasil keluar dari aplikasi.");
     }
 
-    // FILE UPLOAD BASE64 CONVERTER
     function handleFileSelected(e) {
       const file = e.target.files[0];
       if (file) {
@@ -978,7 +919,6 @@
       }
     }
 
-    // REGISTER LOGIC - DIUBAH MENJADI SIMPLE REQUEST DENGAN CONTENT-TYPE TEXT/PLAIN UNTUK MENGHINDARI CORS PREFLIGHT
     async function handleRegister(e) {
       e.preventDefault();
       
@@ -996,7 +936,6 @@
       const newPassword = document.getElementById('reg-password').value;
       const confirmPassword = document.getElementById('reg-password-confirm').value;
 
-      // Proteksi Tambahan Validasi Kecocokan Kata Sandi
       if (newPassword !== confirmPassword) {
         showToast("Konfirmasi kata sandi tidak cocok. Harap periksa kembali!", "error");
         if (submitBtn) {
@@ -1055,7 +994,6 @@
       showToast("Mengirim pengajuan pendaftaran...");
 
       try {
-        // PERBAIKAN CORS UTAMA: Menggunakan 'text/plain' agar browser menganggapnya sebagai Simple Request (menghindari preflight OPTIONS yang diblokir GAS)
         const response = await fetch(appscriptURL, {
           method: "POST",
           headers: { "Content-Type": "text/plain;charset=utf-8" },
@@ -1065,7 +1003,6 @@
         const result = await response.json();
         if (result.status === "success") {
           showToast("Registrasi Berhasil! Pembayaran Anda akan divalidasi oleh admin.");
-          // Update data pending lokal dengan link drive hasil upload
           if (result.driveUrl) {
             tempRegistration.proofImage = result.driveUrl;
             const updatedPending = pendingRegistrations.map(p => p.id === newId ? tempRegistration : p);
@@ -1095,7 +1032,6 @@
       activeVoucherCode = "";
     }
 
-    // SINKRONISASI DATA REAL-TIME DARI GOOGLE SHEET (ADMIN INTERACTIVE CLICK)
     async function syncDataFromCloud() {
       const syncIcon = document.getElementById('sync-icon');
       syncIcon.classList.add('animate-spin');
@@ -1147,6 +1083,7 @@
       const setupCard = document.getElementById('setup-class-card');
       const classInfoCard = document.getElementById('class-info-card');
 
+      // Evaluasi apakah guru pernah mengubah kelas
       if (!currentUser.level || !currentUser.kelas) {
         setupCard.classList.remove('hidden');
         classInfoCard.classList.add('hidden');
@@ -1159,12 +1096,19 @@
         renderSubjectsDropdown(currentUser.level);
 
         const editLimitCount = document.getElementById('edit-limit-count');
-        editLimitCount.innerText = currentUser.limit_ganti;
-        if (currentUser.limit_ganti <= 0) {
-          document.getElementById('btn-edit-class').disabled = true;
-          document.getElementById('btn-edit-class').className = "text-xs font-bold text-slate-400 flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-slate-100 cursor-not-allowed";
+        const editButton = document.getElementById('btn-edit-class');
+        const editButtonText = document.getElementById('edit-button-text');
+        
+        const limit = parseInt(currentUser.limit_ganti) !== 0 ? parseInt(currentUser.limit_ganti) : 0;
+        
+        if (limit <= 0) {
+          editButton.disabled = true;
+          editButton.className = "text-xs font-bold text-slate-400 flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-slate-100 cursor-not-allowed";
+          editButtonText.innerText = "Ganti Kelas (Kesempatan habis)";
         } else {
-          document.getElementById('btn-edit-class').disabled = false;
+          editButton.disabled = false;
+          editButton.className = "text-xs font-bold text-brand-orange hover:text-orange-700 flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-orange-50 hover:bg-orange-100 transition-all";
+          editButtonText.innerText = `Ubah Kelas (${limit} tersisa)`;
         }
       }
 
@@ -1235,7 +1179,8 @@
       }
     }
 
-    function saveInitialClass() {
+    // SIMPAN PILIHAN KELAS (DENGAN SINKRONISASI UPDATE CLOUD DAN SET LIMIT)
+    async function saveInitialClass() {
       const selectClass = document.getElementById('setup-class-select');
       const classVal = selectClass.value;
 
@@ -1253,17 +1198,39 @@
         localStorage.setItem('edugen_users_v2', JSON.stringify(users));
       }
 
-      showToast("Berhasil memperbarui tingkat kelas pengajaran Anda.");
+      showToast("Menyimpan pilihan kelas Anda ke cloud...");
+
+      try {
+        // Melakukan post pembaruan data kelas ke Google Sheets
+        await fetch(appscriptURL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({
+            action: "update_class",
+            userId: currentUser.id,
+            level: currentUser.level,
+            kelas: currentUser.kelas,
+            limit_ganti: currentUser.limit_ganti
+          })
+        });
+        showToast("Setelan kelas berhasil disinkronkan ke server.");
+      } catch (err) {
+        console.warn("Gagal sinkronisasi data kelas ke cloud. Kelas tersimpan lokal.", err);
+      }
+
       renderDashboard();
     }
 
-    function enableClassEdit() {
-      if (currentUser.limit_ganti <= 0) {
+    // AKTIFKAN EDIT KELAS (MENGURANGI KESEMPATAN MENJADI 0 SELAMANYA)
+    async function enableClassEdit() {
+      const limit = parseInt(currentUser.limit_ganti) !== 0 ? parseInt(currentUser.limit_ganti) : 0;
+      if (limit <= 0) {
         showToast("Kesempatan pergantian kelas Anda sudah habis!", "error");
         return;
       }
 
-      currentUser.limit_ganti -= 1;
+      // Mengubah kesempatan ganti kelas langsung ke 0 (karena hanya boleh ganti 1 kali)
+      currentUser.limit_ganti = 0;
       currentUser.level = "";
       currentUser.kelas = "";
 
@@ -1273,8 +1240,8 @@
         localStorage.setItem('edugen_users_v2', JSON.stringify(users));
       }
 
+      showToast("Kesempatan ubah kelas digunakan. Silakan pilih kelas baru...");
       renderDashboard();
-      showToast("Satu kesempatan edit digunakan. Silakan pilih kelas baru.");
     }
 
     // MULTIENTRY MATERI POKOK
@@ -1402,7 +1369,7 @@
       document.getElementById('modal-proof').classList.add('hidden');
     }
 
-    // AKTIVASI AKUN OLEH ADMIN (Kirim data sebagai Simple Request 'text/plain' agar terhindar dari pemblokiran CORS)
+    // AKTIVASI AKUN OLEH ADMIN
     async function adminApproveUser(id) {
       const pIndex = pendingRegistrations.findIndex(p => p.id === id);
       if (pIndex !== -1) {
@@ -1414,7 +1381,7 @@
         try {
           const response = await fetch(appscriptURL, {
             method: "POST",
-            headers: { "Content-Type": "text/plain;charset=utf-8" }, // FIXED CORS PREFLIGHT
+            headers: { "Content-Type": "text/plain;charset=utf-8" }, 
             body: JSON.stringify({
               action: "approve",
               userId: approvedUser.id
@@ -1540,6 +1507,14 @@
       const customPromptText = document.getElementById('gen-custom-prompt').value.trim();
       const count = parseInt(document.getElementById('gen-count').value) || 5;
 
+      // ----------------------------------------------------
+      // REVISI TOMBOL & LOADING GENERATE STATE
+      // ----------------------------------------------------
+      const btnGen = document.getElementById('btn-generate');
+      btnGen.disabled = true;
+      btnGen.className = "w-full lg:w-96 bg-slate-600 text-slate-100 font-bold py-4 rounded-xl cursor-not-allowed transition-all flex items-center justify-center space-x-3";
+      btnGen.innerHTML = `<i class="fas fa-spinner animate-spin"></i> <span>proses pembuatan soal...</span>`;
+
       document.getElementById('result-empty').classList.add('hidden');
       document.getElementById('result-ready').classList.add('hidden');
       document.getElementById('result-loading').classList.remove('hidden');
@@ -1571,7 +1546,7 @@
       ${customPromptText ? `- Instruksi Tambahan Khusus Pengguna: "${customPromptText}"` : ''}
 
       Peraturan penting:
-      1. Jika tipe soal 'Isian Singkat', 'Benar/Salah' atau 'Uraian/Essay', maka atribut 'pilihan' bernilai null.
+      1. Jika tipe soal 'Isian Singkat', 'Benar/Salah' or 'Uraian/Essay', maka atribut 'pilihan' bernilai null.
       2. Untuk tipe 'Pilihan Ganda Kompleks', sediakan beberapa pilihan dan berikan kunci jawaban lengkap dengan pilihan yang benar (contoh kunci: "A dan C").
       3. Respons wajib berupa murni data JSON valid tanpa pembungkus teks deskripsi di luar tag JSON.
       `;
@@ -1653,6 +1628,11 @@
           break;
         } catch (error) {
           if (attempt === maxRetries) {
+            // Restore Button State on Failure
+            btnGen.disabled = false;
+            btnGen.className = "w-full lg:w-96 bg-gradient-to-r from-brand-orange to-brand-yellow hover:opacity-90 text-slate-900 font-extrabold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-3";
+            btnGen.innerHTML = `<i class="fas fa-magic"></i> <span>Generate Soal Sekarang</span>`;
+
             document.getElementById('result-loading').classList.add('hidden');
             document.getElementById('result-empty').classList.remove('hidden');
             showToast("Server sibuk. Silakan lakukan generate kembali.", "error");
@@ -1662,6 +1642,11 @@
           delay *= 2;
         }
       }
+
+      // Restore Button State on Success/Completion
+      btnGen.disabled = false;
+      btnGen.className = "w-full lg:w-96 bg-gradient-to-r from-brand-orange to-brand-yellow hover:opacity-90 text-slate-900 font-extrabold py-4 rounded-xl shadow-lg transition-all flex items-center justify-center space-x-3";
+      btnGen.innerHTML = `<i class="fas fa-magic"></i> <span>Generate Soal Sekarang</span>`;
 
       if (success) {
         try {
