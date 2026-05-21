@@ -805,7 +805,7 @@
       }
 
       statusMsg.className = "text-xs font-bold text-brand-blue animate-pulse";
-      statusMsg.innerText = "Memverifikasi voucher ke cloud Google Sheet...";
+      statusMsg.innerText = "Memverifikasi voucher ke cloud, mohon menunggu...";
       statusMsg.classList.remove('hidden');
 
       try {
@@ -1039,7 +1039,7 @@
     async function syncDataFromCloud() {
       const syncIcon = document.getElementById('sync-icon');
       syncIcon.classList.add('animate-spin');
-      showToast("Menghubungkan ke Google Sheet cloud...");
+      showToast("Menghubungkan ke cloud...");
 
       try {
         const response = await fetch(`${appscriptURL}?action=get_data`);
@@ -1065,7 +1065,7 @@
         }
       } catch (err) {
         console.error(err);
-        showToast("Gagal menghubungi Google Sheet cloud.", "error");
+        showToast("Gagal menghubungi cloud.", "error");
       } finally {
         syncIcon.classList.remove('animate-spin');
       }
