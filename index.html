@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EduGen - Generator Soal SD & SMP</title>
+  <title>Generator Soal Wahana Edukasi</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- FontAwesome Icons -->
@@ -63,12 +63,14 @@
   <header class="bg-white border-b border-slate-100 sticky top-0 z-40 shadow-sm">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
       <div class="flex items-center space-x-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-orange to-brand-yellow flex items-center justify-center text-white font-bold text-xl shadow-lg">
-          E
-        </div>
+        <!-- Logo Aplikasi Wahana Edukasi -->
+        <img src="https://github.com/wahanaedukasi/GeneratorSoal/blob/a490c1b42d85c2ff748823523b17be3f7821dd7a/WAHANA%20EDU.png?raw=true" 
+             alt="Logo Wahana Edukasi" 
+             class="w-10 h-10 object-contain rounded-lg"
+             onerror="this.onerror=null; this.src='https://placehold.co/100x100/f97316/ffffff?text=WE';">
         <div>
-          <span class="text-lg font-black tracking-tight text-slate-900">Edu<span class="text-brand-orange">Gen</span></span>
-          <p class="text-[10px] text-brand-blue font-bold tracking-wider uppercase">Generator Soal SD/SMP</p>
+          <span class="text-lg font-black tracking-tight text-slate-900">Wahana <span class="text-brand-orange">Edukasi</span></span>
+          <p class="text-[10px] text-brand-blue font-bold tracking-wider uppercase">Generator Soal SD & SMP</p>
         </div>
       </div>
 
@@ -91,10 +93,13 @@
     <!-- 1. HALAMAN LOGIN -->
     <div id="view-login" class="w-full max-w-md bg-white rounded-3xl shadow-xl p-8 border border-slate-100 transition-all">
       <div class="text-center mb-8">
-        <div class="w-16 h-16 bg-amber-50 text-brand-yellow rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4 border border-amber-100">
-          <i class="fas fa-shield-halved"></i>
+        <div class="w-20 h-20 bg-slate-50 rounded-2xl flex items-center justify-center mx-auto mb-4 border border-slate-100 overflow-hidden">
+          <img src="https://github.com/wahanaedukasi/GeneratorSoal/blob/a490c1b42d85c2ff748823523b17be3f7821dd7a/WAHANA%20EDU.png?raw=true" 
+               alt="Logo Wahana Edukasi" 
+               class="w-16 h-16 object-contain"
+               onerror="this.onerror=null; this.src='https://placehold.co/150x150/f97316/ffffff?text=Wahana+Edukasi';">
         </div>
-        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Selamat Datang</h2>
+        <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Wahana Edukasi</h2>
         <p class="text-slate-500 mt-2 text-sm">Masuk dengan akun Anda untuk mulai mengenerasi soal otomatis berbasis AI</p>
       </div>
 
@@ -128,11 +133,6 @@
       <!-- Pendaftaran Cepat -->
       <div class="mt-8 pt-6 border-t border-slate-100 text-center">
         <p class="text-slate-600 text-sm">Belum punya akun? <button onclick="switchView('register')" class="text-brand-orange font-bold hover:underline">Registrasi sekarang</button></p>
-        <p class="text-slate-400 text-xs mt-4">Demo Akun (Ketik langsung & login):</p>
-        <div class="bg-slate-50 border border-slate-100 rounded-xl p-3 text-left mt-2 space-y-1 text-xs">
-          <p class="text-slate-600">&bull; Admin: <span class="font-semibold">admin</span> (sandi: <span class="font-semibold">admin123</span>)</p>
-          <p class="text-slate-600">&bull; Pengguna: <span class="font-semibold">rina</span> (sandi: <span class="font-semibold">guru123</span>)</p>
-        </div>
       </div>
     </div>
 
@@ -170,7 +170,7 @@
         </div>
 
         <!-- SETTING KREDENSIAL LOGIN YANG DIINGINKAN -->
-        <div class="bg-amber-50/50 rounded-2xl p-5 border border-amber-200 grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="bg-slate-50 rounded-2xl p-5 border border-slate-200 grid grid-cols-1 md:grid-cols-2 gap-4">
           <div class="col-span-1 md:col-span-2">
             <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-2">
               <i class="fas fa-key text-brand-orange"></i>
@@ -188,7 +188,22 @@
           </div>
         </div>
 
-        <!-- INFO PEMBAYARAN & QRIS REPLIKA (WAHANA EDUKASI) -->
+        <!-- FITUR VOUCHER DISKON -->
+        <div class="bg-amber-50/60 rounded-2xl p-5 border border-amber-200 space-y-3">
+          <div class="flex items-center space-x-2">
+            <i class="fas fa-ticket-alt text-brand-orange"></i>
+            <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Mempunyai Kode Voucher Diskon?</h4>
+          </div>
+          <div class="flex space-x-2">
+            <input type="text" id="reg-voucher" class="flex-1 px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm uppercase outline-none" placeholder="CONTOH: GURUBARU">
+            <button type="button" onclick="verifyDiscountVoucher()" class="bg-brand-blue hover:bg-sky-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition-colors">
+              Terapkan Voucher
+            </button>
+          </div>
+          <p id="voucher-status-msg" class="text-xs hidden"></p>
+        </div>
+
+        <!-- INFO PEMBAYARAN & QRIS DARI SOURCE ASLI -->
         <div class="bg-sky-50/50 rounded-2xl p-6 border border-sky-100 flex flex-col md:flex-row items-center gap-6">
           <div class="flex-1 space-y-3">
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-orange-100 text-brand-orange">
@@ -197,16 +212,15 @@
             <h3 class="text-lg font-extrabold text-slate-900 tracking-tight">Biaya Aktivasi Lisensi</h3>
             <div class="flex items-baseline space-x-2">
               <span class="text-slate-400 line-through text-sm">Rp 75.000</span>
-              <span class="text-3xl font-black text-brand-blue">Rp 50.000</span>
+              <span class="text-3xl font-black text-brand-blue transition-all duration-300" id="display-activation-price">Rp 50.000</span>
             </div>
             <p class="text-xs text-slate-600 leading-relaxed">
               Scan kode QRIS Resmi di samping untuk mentransfer biaya aktivasi aplikasi. Pastikan transaksi ditujukan kepada <strong class="text-slate-800">WAHANA EDUKASI</strong> (NMID: ID1026474822131).
             </p>
           </div>
           
-          <!-- PENYEMATAN QRIS ASLI SESUAI GAMBAR DIUPLOAD -->
+          <!-- IMAGE QR CODE ASLI BERDASARKAN LINK USER -->
           <div class="w-56 bg-white p-4 rounded-2xl border border-sky-200 shadow-lg flex flex-col items-center">
-            <!-- Header QRIS -->
             <div class="w-full flex justify-between items-center mb-1.5 border-b border-slate-100 pb-1.5">
               <span class="text-[10px] font-black tracking-tight text-slate-900">QRIS</span>
               <span class="text-[8px] font-bold text-slate-400 tracking-widest">GPN</span>
@@ -215,14 +229,12 @@
             <p class="text-[9px] font-bold text-slate-800 text-center uppercase tracking-wide">WAHANA EDUKASI</p>
             <p class="text-[7px] text-slate-500 text-center font-semibold mb-2">NMID: ID1026474822131</p>
 
-            <!-- Replika QR Code Terenkripsi Sesuai Gambar -->
-            <div class="bg-slate-50 p-2 rounded-xl border border-slate-100">
-              <svg class="w-32 h-32 text-slate-900" viewBox="0 0 29 29" fill="none" stroke="currentColor" stroke-width="1">
-                <path d="M1 1h7v7H1V1zm1 1v5h5V2H2zm1 1h3v3H3V3zm16-2h7v7h-7V1zm1 1v5h5V2h-5zm1 1h3v3h-3V3zM1 19h7v7H1v-7zm1 1v5h5v-5H2zm1 1h3v3H3v-3zm20-10h1v1h-1zm-2 2h1v1h-1zm2 1h1v1h-1zm-4-4h1v1h-1zm2 0h1v1h-1zm-2 2h2v1h-2zm-3-2h1v1h-1zm2 5h1v1h-1zm3 2h2v1h-2zm-3 2h1v1h-1zm1 2h2v1h-2zm4-6h1v3h-1zm-2 4h1v2h-1zm4 1h1v1h-1zm1 2h1v1h-1zm-3 2h1v1h-1z" fill="currentColor"/>
-                <path d="M11 1h2v3h-2V1zm4 2h2v1h-2V3zm-4 4h3v1h-3V7zm4 1h1v2h-1V8zm-6 4h2v2H9v-2zm4 2h3v1h-3v-1zm1 3h2v1h-2v-1zm-3-3h1v2h-1v-2zm-2 4h2v1h-2v-1z" fill="currentColor"/>
-                <rect x="12" y="12" width="5" height="5" rx="1" fill="#f97316" />
-                <path d="M14 13.5h1v2h-1z" fill="white" />
-              </svg>
+            <!-- Menggunakan gambar QR Code asli yang disediakan user -->
+            <div class="bg-slate-50 p-1.5 rounded-xl border border-slate-100 overflow-hidden flex items-center justify-center">
+              <img src="https://github.com/wahanaedukasi/GeneratorSoal/blob/a490c1b42d85c2ff748823523b17be3f7821dd7a/WhatsApp%20Image%202026-05-05%20at%2009.02.21.jpeg?raw=true" 
+                   alt="QRIS Pembayaran Wahana Edukasi" 
+                   class="w-36 h-36 object-contain"
+                   onerror="this.onerror=null; this.src='https://placehold.co/150x150/ffffff/000000?text=Scan+QRIS';">
             </div>
             
             <p class="text-[8px] font-semibold text-slate-400 mt-2 text-center">Satu QRIS Untuk Semua</p>
@@ -261,8 +273,8 @@
       <!-- KIRI: FORM GENERATOR / PANEL ADMIN -->
       <div class="lg:col-span-5 space-y-6">
         
-        <!-- PEMILIHAN KELAS AWAL (Hanya Tampil Jika Belum Memilih Kelas) -->
-        <div id="setup-class-card" class="bg-gradient-to-br from-slate-900 via-brand-dark to-slate-900 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden">
+        <!-- PEMILIHAN KELAS AWAL -->
+        <div id="setup-class-card" class="hidden bg-gradient-to-br from-slate-900 via-brand-dark to-slate-900 text-white rounded-3xl p-6 shadow-xl relative overflow-hidden">
           <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-brand-orange/10 rounded-full blur-xl"></div>
           <div class="relative z-10">
             <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-yellow text-slate-950 mb-3">
@@ -298,7 +310,7 @@
           </div>
         </div>
 
-        <!-- INFO USER PREMIUM & EDIT KELAS (Tampil setelah memilih kelas) -->
+        <!-- INFO USER PREMIUM & EDIT KELAS -->
         <div id="class-info-card" class="hidden bg-white border border-slate-100 rounded-3xl p-6 shadow-md">
           <div class="flex items-center justify-between">
             <div class="flex items-center space-x-3">
@@ -311,7 +323,6 @@
               </div>
             </div>
             
-            <!-- Tombol Edit Kelas (Maksimal 1 kali pakai) -->
             <button id="btn-edit-class" onclick="enableClassEdit()" class="text-xs font-bold text-brand-orange hover:text-orange-700 flex items-center space-x-1 px-3 py-1.5 rounded-lg bg-orange-50 hover:bg-orange-100 transition-all">
               <i class="fas fa-edit"></i>
               <span>Ubah (<span id="edit-limit-count">1</span> tersisa)</span>
@@ -330,12 +341,10 @@
           </div>
 
           <div class="space-y-4">
-            <!-- Pilihan Mata Pelajaran (Disesuaikan berdasarkan SD/SMP) -->
             <div>
               <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Mata Pelajaran</label>
               <select id="gen-subject" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none">
                 <option value="">-- Pilih Mata Pelajaran --</option>
-                <!-- Opsi dinonaktifkan/ditambahkan via JS -->
               </select>
             </div>
 
@@ -351,13 +360,12 @@
                   <i class="fas fa-plus"></i>
                 </button>
               </div>
-              <!-- Badge Container -->
               <div id="materi-badge-container" class="flex flex-wrap gap-1.5 p-2 bg-slate-50 rounded-xl border border-slate-100 min-h-[40px]">
                 <span class="text-xs text-slate-400 italic self-center px-1">Belum ada materi pokok yang dimasukkan</span>
               </div>
             </div>
 
-            <!-- Jenis Soal (Multiple Checkboxes) -->
+            <!-- Jenis Soal -->
             <div>
               <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Jenis Soal (Pilih satu atau lebih)</label>
               <div class="grid grid-cols-2 gap-3">
@@ -370,33 +378,43 @@
                   <span class="text-xs font-medium text-slate-700">Isian Singkat</span>
                 </label>
                 <label class="relative flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none transition-all">
-                  <input type="checkbox" name="gen-type" value="Uraian/Essay" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
-                  <span class="text-xs font-medium text-slate-700">Uraian / Esai</span>
+                  <input type="checkbox" name="gen-type" value="Pilihan Ganda Kompleks" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                  <span class="text-xs font-medium text-slate-700">Pilihan Ganda Kompleks</span>
                 </label>
                 <label class="relative flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none transition-all">
                   <input type="checkbox" name="gen-type" value="Benar/Salah" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
                   <span class="text-xs font-medium text-slate-700">Benar / Salah</span>
                 </label>
+                <label class="relative flex items-center p-3 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none col-span-2 transition-all">
+                  <input type="checkbox" name="gen-type" value="Uraian/Essay" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                  <span class="text-xs font-medium text-slate-700">Uraian / Esai</span>
+                </label>
               </div>
             </div>
 
-            <!-- Level Soal (Low, Medium, HOTS) -->
+            <!-- Level Kognitif -->
             <div>
-              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Tingkat Kognitif / Level Soal</label>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Level Soal / Kognitif (Pilih satu atau lebih)</label>
               <div class="grid grid-cols-3 gap-2">
-                <label class="text-center p-2 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-all">
-                  <input type="radio" name="gen-level" value="Low" class="sr-only" checked>
-                  <span class="text-xs font-semibold block py-1 text-slate-600">Low (C1-C2)</span>
+                <label class="flex items-center justify-center p-2 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none transition-all">
+                  <input type="checkbox" name="gen-level-check" value="LOTS" checked class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                  <span class="text-xs font-semibold text-slate-600">LOTS</span>
                 </label>
-                <label class="text-center p-2 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-all">
-                  <input type="radio" name="gen-level" value="Medium" class="sr-only">
-                  <span class="text-xs font-semibold block py-1 text-slate-600">Medium (C3)</span>
+                <label class="flex items-center justify-center p-2 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none transition-all">
+                  <input type="checkbox" name="gen-level-check" value="MOTS" checked class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                  <span class="text-xs font-semibold text-slate-600">MOTS</span>
                 </label>
-                <label class="text-center p-2 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer transition-all">
-                  <input type="radio" name="gen-level" value="HOTS" class="sr-only">
-                  <span class="text-xs font-semibold block py-1 text-slate-600">HOTS (C4-C6)</span>
+                <label class="flex items-center justify-center p-2 rounded-xl border border-slate-200 hover:bg-slate-50 cursor-pointer select-none transition-all">
+                  <input type="checkbox" name="gen-level-check" value="HOTS" class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                  <span class="text-xs font-semibold text-slate-600">HOTS</span>
                 </label>
               </div>
+            </div>
+
+            <!-- Kolom Perintah Tambahan Spesifik -->
+            <div>
+              <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Instruksi / Perintah Tambahan (Opsional)</label>
+              <textarea id="gen-custom-prompt" rows="3" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-xs outline-none resize-none" placeholder="Contoh: Dari 20 soal yang dibuat, tolong sediakan 5 soal isian singkat dan sisanya adalah pilihan ganda."></textarea>
             </div>
 
             <!-- Jumlah Soal -->
@@ -413,7 +431,7 @@
           </button>
         </div>
 
-        <!-- PANEL ADMNISTRATOR (KONFIRMASI PENDAFTAR & KELOLA USER) -->
+        <!-- PANEL ADMNISTRATOR -->
         <div id="admin-panel-card" class="hidden bg-white border border-slate-100 rounded-3xl p-6 shadow-md space-y-6">
           <div class="border-b border-slate-100 pb-3">
             <span class="text-xs text-brand-orange font-bold uppercase tracking-widest">Admin Control</span>
@@ -470,7 +488,7 @@
         <div id="result-loading" class="hidden bg-white border border-slate-100 rounded-3xl p-12 shadow-md text-center flex flex-col items-center justify-center space-y-4">
           <div class="w-16 h-16 border-4 border-slate-100 border-t-brand-orange rounded-full animate-spin"></div>
           <h4 class="text-lg font-bold text-slate-800">Menghasilkan Soal Kurikulum Merdeka</h4>
-          <p class="text-xs text-slate-400 max-w-sm">EduGen sedang menyelaraskan materi dengan taksonomi kognitif dan merancang kisi-kisi berbasis model Gemini 2.5 Flash...</p>
+          <p class="text-xs text-slate-400 max-w-sm">Mohon tunggu, AI sedang menyusun butir soal ujian berkualitas tinggi berdasarkan parameter...</p>
         </div>
 
         <!-- NOT READY / KOSONG -->
@@ -487,15 +505,33 @@
         <!-- READY / ADA SOAL -->
         <div id="result-ready" class="hidden space-y-6">
           
-          <!-- Tombol Download -->
-          <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-4">
-            <span class="text-xs text-slate-500 font-medium">Dokumen telah selesai digenerate oleh AI:</span>
-            <div class="flex space-x-2 w-full sm:w-auto">
-              <button onclick="downloadAsPDF()" class="flex-1 sm:flex-none bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center space-x-2 transition-all shadow-md">
+          <!-- Opsi Centang Bagian yang Mau Didownload -->
+          <div class="bg-white border border-slate-100 rounded-2xl p-4 shadow-sm space-y-3">
+            <p class="text-xs font-bold text-slate-700 uppercase tracking-wider flex items-center space-x-1.5">
+              <i class="fas fa-sliders-h text-brand-blue"></i>
+              <span>Atur Bagian Dokumen untuk Diekspor:</span>
+            </p>
+            <div class="grid grid-cols-3 gap-2">
+              <label class="flex items-center p-2 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer select-none">
+                <input type="checkbox" id="dl-check-kisikisi" checked class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                <span class="text-xs font-semibold text-slate-700">1. Kisi-kisi</span>
+              </label>
+              <label class="flex items-center p-2 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer select-none">
+                <input type="checkbox" id="dl-check-soal" checked class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                <span class="text-xs font-semibold text-slate-700">2. Soal</span>
+              </label>
+              <label class="flex items-center p-2 bg-slate-50 border border-slate-200 rounded-xl cursor-pointer select-none">
+                <input type="checkbox" id="dl-check-kunci" checked class="w-4 h-4 text-brand-orange border-slate-300 rounded focus:ring-brand-blue mr-2">
+                <span class="text-xs font-semibold text-slate-700">3. Kunci Jawaban</span>
+              </label>
+            </div>
+            
+            <div class="flex space-x-2 w-full pt-1">
+              <button onclick="downloadAsPDF()" class="flex-1 bg-rose-600 hover:bg-rose-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 transition-all shadow-md">
                 <i class="fas fa-file-pdf"></i>
                 <span>Download PDF</span>
               </button>
-              <button onclick="downloadAsDoc()" class="flex-1 sm:flex-none bg-brand-blue hover:bg-sky-700 text-white font-bold py-2.5 px-4 rounded-xl text-xs flex items-center justify-center space-x-2 transition-all shadow-md">
+              <button onclick="downloadAsDoc()" class="flex-1 bg-brand-blue hover:bg-sky-700 text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center space-x-2 transition-all shadow-md">
                 <i class="fas fa-file-word"></i>
                 <span>Download DOC</span>
               </button>
@@ -521,7 +557,7 @@
             </div>
 
             <!-- BAGIAN I: KISI-KISI SOAL -->
-            <div class="space-y-4">
+            <div id="section-kisikisi" class="space-y-4">
               <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider flex items-center space-x-2">
                 <span class="px-2 py-0.5 bg-sky-50 text-brand-blue text-[10px] rounded">BAGIAN 1</span>
                 <span>Kisi-Kisi Butir Soal</span>
@@ -545,7 +581,7 @@
             </div>
 
             <!-- BAGIAN II: LEMBARAN SOAL -->
-            <div class="space-y-4 pt-4 border-t border-slate-100">
+            <div id="section-soal" class="space-y-4 pt-4 border-t border-slate-100">
               <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider flex items-center space-x-2">
                 <span class="px-2 py-0.5 bg-sky-50 text-brand-blue text-[10px] rounded">BAGIAN 2</span>
                 <span>Lembar Soal Ujian</span>
@@ -557,7 +593,7 @@
             </div>
 
             <!-- BAGIAN III: KUNCI JAWABAN -->
-            <div class="space-y-4 pt-6 border-t border-slate-100">
+            <div id="section-kunci" class="space-y-4 pt-6 border-t border-slate-100">
               <h3 class="text-sm font-extrabold text-slate-900 uppercase tracking-wider flex items-center space-x-2">
                 <span class="px-2 py-0.5 bg-sky-50 text-brand-blue text-[10px] rounded">BAGIAN 3</span>
                 <span>Kunci Jawaban & Rubrik Penilaian</span>
@@ -580,7 +616,7 @@
   <!-- FOOTER -->
   <footer class="bg-white border-t border-slate-100 py-6">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-400">
-      &copy; 2026 EduGen. Dibuat untuk Efisiensi Administrasi Guru Se-Indonesia.
+      &copy; 2026 Generator Soal Wahana Edukasi. Dibuat untuk Efisiensi Administrasi Guru Se-Indonesia.
     </div>
   </footer>
 
@@ -597,7 +633,17 @@
       { id: "2", name: "Rina Kartika, S.Pd.", email: "rina@sekolah.sch.id", username: "rina", pass: "guru123", role: "Pengguna", instansi: "SDN 1 Menteng", level: "SD", kelas: "Kelas 4", limit_ganti: 1, isApproved: true }
     ];
 
-    let pendingRegistrations = []; // Daftar antrean yang butuh konfirmasi admin
+    let pendingRegistrations = [];
+
+    // DATABASE VOUCHER LOKAL
+    let vouchersList = [
+      { code: "GURUBARU", discount: 10000, quota: 100, used: 2 },
+      { code: "EDUGENPRO", discount: 20000, quota: 50, used: 0 },
+      { code: "MERDEKA", discount: 50000, quota: 10, used: 1 }
+    ];
+
+    let currentDiscountPrice = 50000; // Harga dasar setelah diskon dari 75rb
+    let activeVoucherCode = "";
 
     let currentUser = null;
     let selectedSetupLevel = "SD";
@@ -608,7 +654,6 @@
 
     // Initial load
     window.onload = function() {
-      // Muat data dari localStorage jika ada
       const savedUsers = localStorage.getItem('edugen_users_v2');
       if (savedUsers) {
         users = JSON.parse(savedUsers);
@@ -620,7 +665,6 @@
       if (savedPending) {
         pendingRegistrations = JSON.parse(savedPending);
       } else {
-        // Simulasi data antrean default jika pertama dijalankan
         pendingRegistrations = [
           { id: "p1", name: "Hasan Basri, S.Pd.", email: "hasan@smp.sch.id", username: "hasan123", pass: "hasan99", role: "Pengguna", instansi: "SMP Nusantara", phone: "08123456789", proofImage: "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=400", isApproved: false }
         ];
@@ -631,26 +675,55 @@
       setupRadioButtons();
     }
 
-    // Toggle tampilan radio button level secara custom
     function setupRadioButtons() {
-      const radios = document.querySelectorAll('input[name="gen-level"]');
-      radios.forEach(radio => {
-        radio.addEventListener('change', (e) => {
-          radios.forEach(r => {
-            r.closest('label').classList.remove('bg-brand-orange', 'text-white', 'border-brand-orange');
-            r.closest('label').classList.add('border-slate-200');
-            r.nextElementSibling.classList.remove('text-white');
-            r.nextElementSibling.classList.add('text-slate-600');
-          });
-          if(e.target.checked) {
-            e.target.closest('label').classList.add('bg-brand-orange', 'text-white', 'border-brand-orange');
-            e.target.closest('label').classList.remove('border-slate-200');
-            e.target.nextElementSibling.classList.add('text-white');
-            r.nextElementSibling.classList.remove('text-slate-600');
-          }
-        });
-      });
-      document.querySelector('input[name="gen-level"]:checked').dispatchEvent(new Event('change'));
+      // Radio buttons diatur via manual CSS/Tailwind
+    }
+
+    // VERIFIKASI VOUCHER DISKON
+    function verifyDiscountVoucher() {
+      const voucherInput = document.getElementById('reg-voucher').value.trim().toUpperCase();
+      const statusMsg = document.getElementById('voucher-status-msg');
+      const priceDisplay = document.getElementById('display-activation-price');
+
+      if (!voucherInput) {
+        showToast("Harap masukkan kode voucher terlebih dahulu!", "error");
+        return;
+      }
+
+      const foundVoucher = vouchersList.find(v => v.code === voucherInput);
+
+      if (foundVoucher) {
+        if (foundVoucher.used >= foundVoucher.quota) {
+          statusMsg.className = "text-xs font-bold text-rose-500";
+          statusMsg.innerText = "Maaf, kuota kode voucher ini telah habis!";
+          statusMsg.classList.remove('hidden');
+          return;
+        }
+
+        const discountAmount = foundVoucher.discount;
+        currentDiscountPrice = 50000 - discountAmount;
+        if (currentDiscountPrice < 0) currentDiscountPrice = 0;
+
+        activeVoucherCode = foundVoucher.code;
+
+        statusMsg.className = "text-xs font-bold text-emerald-600";
+        statusMsg.innerHTML = `<i class="fas fa-check-circle mr-1"></i> Voucher "${foundVoucher.code}" berhasil digunakan! Potongan sebesar Rp ${discountAmount.toLocaleString('id-ID')}`;
+        statusMsg.classList.remove('hidden');
+
+        priceDisplay.innerText = `Rp ${currentDiscountPrice.toLocaleString('id-ID')}`;
+        priceDisplay.className = "text-3xl font-black text-brand-orange animate-bounce";
+        
+        showToast("Voucher diskon berhasil diterapkan!");
+      } else {
+        statusMsg.className = "text-xs font-bold text-rose-500";
+        statusMsg.innerText = "Kode voucher tidak valid atau tidak ditemukan.";
+        statusMsg.classList.remove('hidden');
+        
+        currentDiscountPrice = 50000;
+        activeVoucherCode = "";
+        priceDisplay.innerText = "Rp 50.000";
+        priceDisplay.className = "text-3xl font-black text-brand-blue";
+      }
     }
 
     // Navigasi View
@@ -693,7 +766,7 @@
       }, 4000);
     }
 
-    // LOGIN LOGIC (Mendukung pencarian username atau email)
+    // LOGIN LOGIC
     function handleLogin(e) {
       e.preventDefault();
       const userKey = document.getElementById('login-username').value.trim().toLowerCase();
@@ -710,7 +783,6 @@
         currentUser = user;
         showToast(`Selamat datang, ${user.name}!`);
         
-        // Show user menu di header
         document.getElementById('header-user-menu').classList.remove('hidden');
         document.getElementById('header-user-name').innerText = user.name;
         document.getElementById('header-user-role').innerText = user.role;
@@ -749,7 +821,7 @@
       }
     }
 
-    // REGISTER LOGIC (Mendaftarkan ke antrean pending)
+    // REGISTER LOGIC
     function handleRegister(e) {
       e.preventDefault();
       const name = document.getElementById('reg-name').value.trim();
@@ -759,7 +831,6 @@
       const newUsername = document.getElementById('reg-username').value.trim().toLowerCase();
       const newPassword = document.getElementById('reg-password').value;
 
-      // Validasi duplikasi username/email di database utama atau antrean
       if (users.some(u => u.email.toLowerCase() === email.toLowerCase() || u.username.toLowerCase() === newUsername)) {
         showToast("Username atau Email telah digunakan!", "error");
         return;
@@ -782,15 +853,20 @@
         level: "",
         kelas: "",
         limit_ganti: 1,
-        proofImage: fileProofBase64 || "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=400", // Fallback image jika kosong
-        isApproved: false
+        proofImage: fileProofBase64 || "https://images.unsplash.com/photo-1554415707-6e8cfc93fe23?auto=format&fit=crop&q=80&w=400",
+        isApproved: false,
+        voucherUsed: activeVoucherCode,
+        nominalBayar: currentDiscountPrice
       };
 
-      // Simpan ke antrean lokal
       pendingRegistrations.push(tempRegistration);
       localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
 
-      // Kirim asinkronus ke Apps Script
+      if (activeVoucherCode) {
+        const vIdx = vouchersList.findIndex(v => v.code === activeVoucherCode);
+        if (vIdx !== -1) vouchersList[vIdx].used += 1;
+      }
+
       const payload = {
         action: "register",
         userId: newId,
@@ -801,7 +877,9 @@
         email: email,
         phone: phone,
         proofImage: fileProofBase64,
-        proofName: fileProofName
+        proofName: fileProofName,
+        voucherUsed: activeVoucherCode,
+        nominalBayar: currentDiscountPrice
       };
 
       showToast("Mengirim pengajuan registrasi...");
@@ -812,15 +890,19 @@
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload)
       }).then(() => {
-        showToast("Pengajuan berhasil dikirim! Silakan hubungi Admin untuk verifikasi pembayaran.");
+        showToast("Pengajuan dikirim! Wahana Edukasi akan memverifikasi secepatnya.");
         switchView('login');
         document.getElementById('form-register').reset();
         document.getElementById('file-name-display').innerText = "";
+        document.getElementById('voucher-status-msg').classList.add('hidden');
+        document.getElementById('display-activation-price').innerText = "Rp 50.000";
         fileProofBase64 = "";
         fileProofName = "";
+        currentDiscountPrice = 50000;
+        activeVoucherCode = "";
       }).catch(err => {
-        console.warn("Koneksi Apps Script terhambat. Data diarsipkan secara lokal.", err);
-        showToast("Registrasi lokal berhasil dikirim! Tunggu persetujuan Admin.");
+        console.warn("Koneksi gagal. Pengajuan disimpan lokal.", err);
+        showToast("Registrasi lokal berhasil! Tunggu persetujuan pembayaran dari Admin.");
         switchView('login');
       });
     }
@@ -838,20 +920,18 @@
         adminCard.classList.add('hidden');
       }
 
-      // Handle Pemilihan Kelas Awal
       const setupCard = document.getElementById('setup-class-card');
       const classInfoCard = document.getElementById('class-info-card');
 
       if (!currentUser.level || !currentUser.kelas) {
         setupCard.classList.remove('hidden');
         classInfoCard.classList.add('hidden');
-        selectSetupLevel('SD'); // Default SD
+        selectSetupLevel('SD'); 
       } else {
         setupCard.classList.add('hidden');
         classInfoCard.classList.remove('hidden');
         document.getElementById('display-class-info').innerText = `${currentUser.level} - ${currentUser.kelas}`;
         
-        // Render mata pelajaran dinamis berdasarkan tingkatan
         renderSubjectsDropdown(currentUser.level);
 
         const editLimitCount = document.getElementById('edit-limit-count');
@@ -867,7 +947,6 @@
       document.getElementById('print-instansi').innerText = currentUser.instansi;
     }
 
-    // UPDATE LIST MATA PELAJARAN BERDASARKAN LEVEL SD / SMP (KURIKULUM MERDEKA)
     function renderSubjectsDropdown(level) {
       const selectSubject = document.getElementById('gen-subject');
       
@@ -901,7 +980,6 @@
       selectSubject.innerHTML = '<option value="">-- Pilih Mata Pelajaran --</option>' + specificSubjects.join('') + commonSubjects.join('');
     }
 
-    // PILIH LEVEL KELAS DI SETUP AWAL
     function selectSetupLevel(level) {
       selectedSetupLevel = level;
       const btnSD = document.getElementById('btn-setup-level-sd');
@@ -933,7 +1011,6 @@
       }
     }
 
-    // SIMPAN PILIHAN KELAS
     function saveInitialClass() {
       const selectClass = document.getElementById('setup-class-select');
       const classVal = selectClass.value;
@@ -956,7 +1033,6 @@
       renderDashboard();
     }
 
-    // EDIT KELAS (GANTI SEKALI SEUMUR HIDUP)
     function enableClassEdit() {
       if (currentUser.limit_ganti <= 0) {
         showToast("Kesempatan pergantian kelas Anda sudah habis!", "error");
@@ -974,7 +1050,7 @@
       }
 
       renderDashboard();
-      showToast("Kesempatan ubah kelas dikurangi, silakan setel kelas baru.");
+      showToast("Satu kesempatan edit digunakan. Silakan pilih kelas baru.");
     }
 
     // MULTIENTRY MATERI POKOK
@@ -1056,11 +1132,17 @@
       pendingContainer.innerHTML = pendingRegistrations.map((p, idx) => `
         <div class="bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm space-y-3 text-xs">
           <div class="space-y-1">
-            <h5 class="font-bold text-slate-800">${p.name}</h5>
+            <div class="flex justify-between items-center">
+              <h5 class="font-bold text-slate-800">${p.name}</h5>
+              <span class="text-[10px] font-bold text-brand-orange bg-orange-50 px-2 py-0.5 rounded">
+                Tagihan: Rp ${(p.nominalBayar || 50000).toLocaleString('id-ID')}
+              </span>
+            </div>
             <p class="text-slate-500 text-[11px] leading-relaxed">
               <i class="fas fa-school text-slate-400 mr-1"></i> ${p.instansi}<br>
               <i class="fas fa-envelope text-slate-400 mr-1"></i> ${p.email}<br>
-              <i class="fas fa-phone text-slate-400 mr-1"></i> ${p.phone}
+              <i class="fas fa-phone text-slate-400 mr-1"></i> ${p.phone}<br>
+              ${p.voucherUsed ? `<i class="fas fa-ticket-alt text-brand-orange mr-1"></i> Voucher: <strong class="text-brand-orange">${p.voucherUsed}</strong>` : ''}
             </p>
           </div>
           <div class="flex space-x-1.5 pt-1.5 border-t border-slate-50">
@@ -1075,7 +1157,6 @@
       `).join('');
     }
 
-    // DETAIL BUKTI TRANSFER (MODAL)
     function viewProof(imageSource) {
       const modal = document.getElementById('modal-proof');
       const img = document.getElementById('modal-proof-img');
@@ -1087,25 +1168,21 @@
       document.getElementById('modal-proof').classList.add('hidden');
     }
 
-    // ADMIN: SETUJUI / AKTIFKAN USER PENDAFTAR
     function adminApproveUser(id) {
       const pIndex = pendingRegistrations.findIndex(p => p.id === id);
       if (pIndex !== -1) {
         const approvedUser = pendingRegistrations[pIndex];
         approvedUser.isApproved = true;
 
-        // Pindahkan ke database user aktif
         users.push(approvedUser);
         localStorage.setItem('edugen_users_v2', JSON.stringify(users));
 
-        // Hapus dari antrean
         pendingRegistrations.splice(pIndex, 1);
         localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
 
         showToast(`Akun ${approvedUser.name} sukses diaktivasi!`);
         renderDashboard();
 
-        // Update database Apps Script di Google Sheet secara asinkronus
         fetch(appscriptURL, {
           method: "POST",
           mode: "no-cors",
@@ -1118,7 +1195,6 @@
       }
     }
 
-    // ADMIN: TAMBAH USER SECARA MANUAL
     function adminAddUser() {
       const name = document.getElementById('admin-add-name').value.trim();
       const email = document.getElementById('admin-add-email').value.trim();
@@ -1162,14 +1238,12 @@
       renderAdminUsers();
     }
 
-    // ADMIN: HAPUS USER
     function adminDeleteUser(userId) {
       users = users.filter(u => u.id !== userId);
       localStorage.setItem('edugen_users_v2', JSON.stringify(users));
       showToast("Pengguna berhasil dihapus.");
       renderAdminUsers();
     }
-
 
     // ==========================================
     // AI GEMINI INTEGRATION (GENERATOR SOAL)
@@ -1200,26 +1274,35 @@
         return;
       }
 
-      const level = document.querySelector('input[name="gen-level"]:checked').value;
+      const selectedLevels = [];
+      document.querySelectorAll('input[name="gen-level-check"]:checked').forEach(cb => {
+        selectedLevels.push(cb.value);
+      });
+      if (selectedLevels.length === 0) {
+        showToast("Mohon pilih minimal 1 Level Kognitif!", "error");
+        return;
+      }
+
+      const customPromptText = document.getElementById('gen-custom-prompt').value.trim();
       const count = parseInt(document.getElementById('gen-count').value) || 5;
 
       document.getElementById('result-empty').classList.add('hidden');
       document.getElementById('result-ready').classList.add('hidden');
       document.getElementById('result-loading').classList.remove('hidden');
 
-      const systemInstruction = "Anda adalah AI generator soal akademis profesional untuk sekolah dasar (SD) dan sekolah menengah pertama (SMP) di Indonesia. Buatlah kisi-kisi, lembar soal, dan pembahasan jawaban secara akurat sesuai Kurikulum Merdeka.";
+      const systemInstruction = "Anda adalah AI generator soal akademis profesional untuk sekolah dasar (SD) dan sekolah menengah pertama (SMP) di Indonesia. Buatlah kisi-kisi, lembar soal, dan pembahasan jawaban secara akurat sesuai standar penilaian Kurikulum Merdeka.";
       
       const userPrompt = `
       Buatlah evaluasi soal dalam bentuk JSON terstruktur murni:
       {
         "kisi_kisi": [
-          {"no": 1, "materi_pokok": "materi", "indikator": "indikator ketercapaian", "jenis": "Pilihan Ganda", "level": "L1/L2/L3"}
+          {"no": 1, "materi_pokok": "materi", "indikator": "indikator ketercapaian", "jenis": "Pilihan Ganda", "level": "LOTS/MOTS/HOTS"}
         ],
         "soal": [
-          {"no": 1, "tipe": "Pilihan Ganda", "pertanyaan": "pertanyaan", "pilihan": ["A. x", "B. y", "C. z", "D. w"], "jawaban_benar": "A"}
+          {"no": 1, "tipe": "Pilihan Ganda atau Pilihan Ganda Kompleks atau Isian Singkat atau Benar/Salah atau Uraian/Essay", "pertanyaan": "pertanyaan", "pilihan": ["A. x", "B. y", "C. z", "D. w"], "jawaban_benar": "A"}
         ],
         "kunci_jawaban": [
-          {"no": 1, "kunci": "A", "pembahasan": "pembahasan detail"}
+          {"no": 1, "kunci": "A atau teks jawaban", "pembahasan": "pembahasan detail"}
         ]
       }
 
@@ -1228,13 +1311,15 @@
       - Kelas: ${currentUser.kelas}
       - Mata Pelajaran: ${subject}
       - Materi Pokok: ${enteredMateri.join(", ")}
-      - Jenis Soal (pilihan acak berimbang): ${types.join(", ")}
-      - Tingkat Kognitif: ${level} (Jika HOTS berikan tipe analisis mendalam)
+      - Jenis Soal yang dipilih (harus sesuai dengan pilihan): ${types.join(", ")}
+      - Tingkat Kognitif / Level Soal yang boleh dibuat: ${selectedLevels.join(", ")}
       - Jumlah Soal: ${count} butir soal
+      ${customPromptText ? `- Instruksi Tambahan Khusus Pengguna: "${customPromptText}"` : ''}
 
       Peraturan penting:
       1. Jika tipe soal 'Isian Singkat', 'Benar/Salah' atau 'Uraian/Essay', maka atribut 'pilihan' bernilai null.
-      2. Respons wajib berupa murni data JSON valid.
+      2. Untuk tipe 'Pilihan Ganda Kompleks', sediakan beberapa pilihan dan berikan kunci jawaban lengkap dengan pilihan yang benar (contoh kunci: "A dan C").
+      3. Respons wajib berupa murni data JSON valid tanpa pembungkus teks deskripsi di luar tag JSON.
       `;
 
       const maxRetries = 5;
@@ -1331,7 +1416,7 @@
 
           document.getElementById('info-mapel').innerText = subject;
           document.getElementById('info-kelas').innerText = `${currentUser.level} / ${currentUser.kelas}`;
-          document.getElementById('info-level').innerText = level;
+          document.getElementById('info-level').innerText = selectedLevels.join(", ");
 
           renderGeneratedSoal(parsedData);
           
@@ -1348,7 +1433,6 @@
     }
 
     function renderGeneratedSoal(data) {
-      // 1. Render Kisi-Kisi
       const kisikisiContainer = document.getElementById('preview-kisikisi');
       kisikisiContainer.innerHTML = data.kisi_kisi.map(kk => `
         <tr>
@@ -1356,11 +1440,10 @@
           <td class="p-3 border border-slate-200 font-semibold text-slate-800">${kk.materi_pokok}</td>
           <td class="p-3 border border-slate-200 text-slate-600">${kk.indikator}</td>
           <td class="p-3 border border-slate-200 text-slate-600">${kk.jenis}</td>
-          <td class="p-3 border border-slate-200 text-center"><span class="px-2 py-0.5 bg-slate-100 rounded text-xs font-semibold">${kk.level}</span></td>
+          <td class="p-3 border border-slate-200 text-center"><span class="px-2 py-0.5 bg-sky-50 text-brand-blue rounded text-xs font-bold">${kk.level}</span></td>
         </tr>
       `).join('');
 
-      // 2. Render Soal
       const soalContainer = document.getElementById('preview-soal');
       soalContainer.innerHTML = data.soal.map(s => {
         let pilihanHtml = "";
@@ -1371,31 +1454,52 @@
         }
         return `
           <div class="space-y-1">
-            <p class="font-bold text-slate-900">${s.no}. ${s.pertanyaan}</p>
+            <p class="font-bold text-slate-900">${s.no}. ${s.pertanyaan} <span class="text-[10px] text-brand-orange bg-orange-50 font-semibold px-2 py-0.5 rounded ml-1">${s.tipe}</span></p>
             ${pilihanHtml}
           </div>
         `;
       }).join('');
 
-      // 3. Render Kunci Jawaban
       const kunciContainer = document.getElementById('preview-kunci');
       kunciContainer.innerHTML = data.kunci_jawaban.map(kj => `
         <div class="border-b border-amber-100 pb-3 last:border-b-0 last:pb-0">
-          <p class="font-bold text-slate-900">Kunci Jawaban No. ${kj.no}: <span class="text-brand-orange">${kj.kunci}</span></p>
+          <p class="font-bold text-slate-900">Kunci Jawaban No. ${kj.no}: <span class="text-brand-orange font-black">${kj.kunci}</span></p>
           <p class="text-xs text-slate-600 mt-1"><span class="font-semibold text-slate-700">Pembahasan:</span> ${kj.pembahasan}</p>
         </div>
       `).join('');
     }
 
-    // DOWNLOAD SEBAGAI PDF
+    function applySelectiveExportVisibility() {
+      const showKisiKisi = document.getElementById('dl-check-kisikisi').checked;
+      const showSoal = document.getElementById('dl-check-soal').checked;
+      const showKunci = document.getElementById('dl-check-kunci').checked;
+
+      const secKisiKisi = document.getElementById('section-kisikisi');
+      const secSoal = document.getElementById('section-soal');
+      const secKunci = document.getElementById('section-kunci');
+
+      if (showKisiKisi) secKisiKisi.classList.remove('hidden'); else secKisiKisi.classList.add('hidden');
+      if (showSoal) secSoal.classList.remove('hidden'); else secSoal.classList.add('hidden');
+      if (showKunci) secKunci.classList.remove('hidden'); else secKunci.classList.add('hidden');
+    }
+
+    function resetSelectiveExportVisibility() {
+      document.getElementById('section-kisikisi').classList.remove('hidden');
+      document.getElementById('section-soal').classList.remove('hidden');
+      document.getElementById('section-kunci').classList.remove('hidden');
+    }
+
     function downloadAsPDF() {
+      applySelectiveExportVisibility();
+      
       const { jsPDF } = window.jspdf;
       const doc = new jsPDF('p', 'pt', 'a4');
       const elementHTML = document.getElementById('document-print-area');
       
       doc.html(elementHTML, {
         callback: function (doc) {
-          doc.save(`Soal_EduGen_${currentUser.kelas.replace(" ", "")}.pdf`);
+          doc.save(`Soal_Wahana_Edukasi_${currentUser.kelas.replace(" ", "")}.pdf`);
+          resetSelectiveExportVisibility();
         },
         x: 40,
         y: 40,
@@ -1404,14 +1508,15 @@
       });
     }
 
-    // DOWNLOAD SEBAGAI DOC (MS WORD)
     function downloadAsDoc() {
+      applySelectiveExportVisibility();
+      
       const content = document.getElementById('document-print-area').innerHTML;
       
       const htmlString = `
         <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
         <head>
-          <title>Generator Soal EduGen</title>
+          <title>Generator Soal Wahana Edukasi</title>
           <style>
             body { font-family: 'Arial', sans-serif; line-height: 1.5; font-size: 11pt; }
             h2, h3 { text-align: center; text-transform: uppercase; margin-bottom: 5px; }
@@ -1421,6 +1526,7 @@
             .grid { display: block; margin-top: 10px; }
             .question-block { margin-bottom: 20px; }
             .kunci-box { background-color: #f9f9f9; padding: 10px; border: 1px solid #e2e8f0; margin-top: 10px; }
+            .hidden { display: none !important; }
           </style>
         </head>
         <body>
@@ -1436,10 +1542,12 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
       a.href = url;
-      a.download = `Soal_EduGen_${currentUser.kelas.replace(" ", "")}.doc`;
+      a.download = `Soal_Wahana_Edukasi_${currentUser.kelas.replace(" ", "")}.doc`;
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
+      
+      resetSelectiveExportVisibility();
     }
   </script>
 </body>
