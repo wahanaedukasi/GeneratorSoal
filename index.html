@@ -134,7 +134,7 @@
                onerror="this.onerror=null; this.src='https://placehold.co/150x150/f97316/ffffff?text=Wahana+Edukasi';">
         </div>
         <h2 class="text-2xl font-extrabold text-slate-900 tracking-tight">Wahana Edukasi</h2>
-        <p class="text-slate-500 mt-2 text-sm">Masuk dengan akun Anda untuk mulai membuat soal otomatis</p>
+        <p class="text-slate-500 mt-2 text-sm">Masuk dengan akun Anda untuk mulai mengenerasi soal otomatis berbasis AI</p>
       </div>
 
       <form id="form-login" onsubmit="handleLogin(event)" class="space-y-5">
@@ -192,15 +192,15 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Nama Lengkap & Gelar</label>
-            <input type="text" id="reg-name" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="Contoh: Nama Guru, S.Pd.">
+            <input type="text" id="reg-name" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="Contoh: Budi Santoso, S.Pd.">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Nama Instansi / Sekolah</label>
-            <input type="text" id="reg-instansi" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="SD Wahana Edukasi">
+            <input type="text" id="reg-instansi" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="SD Merdeka Belajar">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Alamat Email Aktif</label>
-            <input type="email" id="reg-email" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="nama@guru.com">
+            <input type="email" id="reg-email" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue focus:bg-white transition-all text-sm outline-none" placeholder="budi@sekolah.sch.id">
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Nomor HP / WhatsApp</label>
@@ -220,7 +220,7 @@
           <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div>
               <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Username Baru</label>
-              <input type="text" id="reg-username" required class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm outline-none" placeholder="Contoh: namaguru123">
+              <input type="text" id="reg-username" required class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm outline-none" placeholder="Contoh: budiguru123">
             </div>
             <div>
               <label class="block text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Password Baru</label>
@@ -252,7 +252,7 @@
             <h4 class="text-xs font-bold text-slate-700 uppercase tracking-wider">Mempunyai Kode Voucher Diskon?</h4>
           </div>
           <div class="flex space-x-2">
-            <input type="text" id="reg-voucher" class="flex-1 px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm uppercase outline-none" placeholder="CONTOH: GURUHEBAT">
+            <input type="text" id="reg-voucher" class="flex-1 px-4 py-2.5 bg-white border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-blue focus:border-brand-blue transition-all text-sm uppercase outline-none" placeholder="CONTOH: GURUBARU">
             <button type="button" onclick="verifyDiscountVoucher()" class="bg-brand-blue hover:bg-sky-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition-colors">
               Terapkan Voucher
             </button>
@@ -559,7 +559,7 @@
         <!-- LOADING INDICATOR -->
         <div id="result-loading" class="hidden bg-white border border-slate-100 rounded-3xl p-12 shadow-md text-center flex flex-col items-center justify-center space-y-4">
           <div class="w-16 h-16 border-4 border-slate-100 border-t-brand-orange rounded-full animate-spin"></div>
-          <h4 class="text-lg font-bold text-slate-800">Menghasilkan Soal</h4>
+          <h4 class="text-lg font-bold text-slate-800">Menghasilkan Soal Kurikulum Merdeka</h4>
           <p class="text-xs text-slate-400 max-w-sm">Mohon tunggu, AI sedang menyusun butir soal ujian berkualitas tinggi berdasarkan kriteria yang dipilih...</p>
         </div>
 
@@ -687,7 +687,7 @@
 
     // DATABASE UTAMA LOKAL SINKRON
     let users = [
-      { id: "1", name: "Administrator Utama", email: "admin@edugen.id", username: "admin", pass: "admin123", role: "Admin", instansi: "Pusat Kurikulum", level: "", kelas: "", limit_ganti: 1, isApproved: true },
+      { id: "1", name: "Administrator Utama", email: "admin@edugen.id", username: "admin", pass: "admin123", role: "Admin", instansi: "Pusat Kurikulum Merdeka", level: "", kelas: "", limit_ganti: 1, isApproved: true },
       { id: "2", name: "Rina Kartika, S.Pd.", email: "rina@sekolah.sch.id", username: "rina", pass: "guru123", role: "Pengguna", instansi: "SDN 1 Menteng", level: "SD", kelas: "Kelas 4", limit_ganti: 1, isApproved: true }
     ];
 
@@ -1057,13 +1057,19 @@
       activeVoucherCode = "";
     }
 
+    // PEMBARUAN UTAMA: Menggunakan POST request saat "Sinkron Cloud" agar selalu lolos CORS Bypass & Redirect Block
     async function syncDataFromCloud() {
       const syncIcon = document.getElementById('sync-icon');
       syncIcon.classList.add('animate-spin');
       showToast("Menghubungkan ke Google Sheet cloud...");
 
       try {
-        const response = await fetch(`${appscriptURL}?action=get_data`);
+        const response = await fetch(appscriptURL, {
+          method: "POST",
+          headers: { "Content-Type": "text/plain;charset=utf-8" },
+          body: JSON.stringify({ action: "get_data" })
+        });
+        
         if (!response.ok) throw new Error("Akses Apps Script ditolak.");
         const cloudData = await response.json();
 
@@ -1286,9 +1292,214 @@
       renderMateriBadges();
     }
 
-    // MEMPERBAIKI MASALAH MODEL TIDAK DITEMUKAN (ERROR 404) DENGAN MENGGUNAKAN gemini-1.5-flash DI CODE GS
-    // Kode backend Google Apps Script Anda (code.gs) harus diubah modelnya dari "gemini-2.5-flash-preview-09-2025" menjadi "gemini-1.5-flash"
-    // Di bawah ini, kode frontend tetap mengirim payload generate_questions_ai yang akan diterjemahkan oleh Apps Script Anda secara stabil.
+    function removeMateri(index) {
+      enteredMateri.splice(index, 1);
+      renderMateriBadges();
+    }
+
+    function renderMateriBadges() {
+      const container = document.getElementById('materi-badge-container');
+      if (enteredMateri.length === 0) {
+        container.innerHTML = '<span class="text-xs text-slate-400 italic self-center px-1">Belum ada materi pokok yang dimasukkan</span>';
+        return;
+      }
+
+      container.innerHTML = enteredMateri.map((m, idx) => `
+        <span class="inline-flex items-center space-x-1 px-3 py-1 bg-sky-50 border border-sky-100 rounded-full text-xs font-bold text-brand-blue animate-fade-in">
+          <span>${m}</span>
+          <button type="button" onclick="removeMateri(${idx})" class="text-sky-400 hover:text-sky-900 font-bold ml-1">
+            <i class="fas fa-times"></i>
+          </button>
+        </span>
+      `).join('');
+    }
+
+    // ADMIN: TAMPILKAN USER AKTIF
+    function renderAdminUsers() {
+      const listContainer = document.getElementById('admin-users-list');
+      const countEl = document.getElementById('admin-user-count');
+
+      countEl.innerText = users.length;
+      listContainer.innerHTML = users.map(user => `
+        <div class="py-2.5 flex items-center justify-between text-xs">
+          <div class="space-y-0.5">
+            <p class="font-bold text-slate-800">${user.name}</p>
+            <p class="text-slate-400">@${user.username} &bull; ${user.email}</p>
+            <div class="flex items-center space-x-1">
+              <span class="inline-block px-1.5 py-0.5 rounded text-[10px] bg-slate-100 font-semibold text-slate-600">${user.role}</span>
+              ${user.kelas ? `<span class="text-[10px] text-brand-blue font-bold">${user.level} - ${user.kelas}</span>` : ''}
+            </div>
+          </div>
+          ${user.role !== 'Admin' ? `
+            <button onclick="adminDeleteUser('${user.id}')" class="text-rose-400 hover:text-rose-600 p-1.5 hover:bg-rose-50 rounded transition-colors">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          ` : ''}
+        </div>
+      `).join('');
+    }
+
+    // ADMIN: TAMPILKAN ANTREAN PENDAFTARAN
+    function renderPendingApprovals() {
+      const pendingContainer = document.getElementById('admin-pending-list');
+      const pendingCountEl = document.getElementById('admin-pending-count');
+
+      pendingCountEl.innerText = pendingRegistrations.length;
+
+      if (pendingRegistrations.length === 0) {
+        pendingContainer.innerHTML = '<p class="text-xs text-slate-500 italic text-center py-2">Tidak ada pendaftaran baru</p>';
+        return;
+      }
+
+      pendingContainer.innerHTML = pendingRegistrations.map((p, idx) => `
+        <div class="bg-white p-3.5 rounded-xl border border-amber-100 shadow-sm space-y-3 text-xs">
+          <div class="space-y-1">
+            <div class="flex justify-between items-center">
+              <h5 class="font-bold text-slate-800">${p.name}</h5>
+              <span class="text-[10px] font-bold text-brand-orange bg-orange-50 px-2 py-0.5 rounded">
+                Tagihan: Rp ${(p.nominalBayar || 50000).toLocaleString('id-ID')}
+              </span>
+            </div>
+            <p class="text-slate-500 text-[11px] leading-relaxed">
+              <i class="fas fa-school text-slate-400 mr-1"></i> ${p.instansi}<br>
+              <i class="fas fa-envelope text-slate-400 mr-1"></i> ${p.email}<br>
+              <i class="fas fa-phone text-slate-400 mr-1"></i> ${p.phone}<br>
+              ${p.voucherUsed ? `<i class="fas fa-ticket-alt text-brand-orange mr-1"></i> Voucher: <strong class="text-brand-orange">${p.voucherUsed}</strong>` : ''}
+            </p>
+          </div>
+          <div class="flex space-x-1.5 pt-1.5 border-t border-slate-50">
+            <button type="button" onclick="viewProof('${p.proofImage}')" class="flex-1 bg-sky-50 text-brand-blue border border-sky-100 hover:bg-sky-100 font-bold py-1.5 rounded-lg text-[10px] transition-all">
+              <i class="fas fa-receipt mr-1"></i> Bukti Bayar
+            </button>
+            <button type="button" onclick="adminApproveUser('${p.id}')" class="flex-1 bg-brand-orange hover:bg-orange-600 text-white font-extrabold py-1.5 rounded-lg text-[10px] transition-all shadow-sm">
+              <i class="fas fa-user-check mr-1"></i> Aktifkan
+            </button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function viewProof(imageSource) {
+      const modal = document.getElementById('modal-proof');
+      const img = document.getElementById('modal-proof-img');
+      const downloadLink = document.getElementById('modal-proof-download');
+      
+      img.src = imageSource;
+      
+      if (imageSource.startsWith('http')) {
+        downloadLink.href = imageSource;
+        downloadLink.classList.remove('hidden');
+      } else {
+        downloadLink.classList.add('hidden');
+      }
+      
+      modal.classList.remove('hidden');
+    }
+
+    function closeProofModal() {
+      document.getElementById('modal-proof').classList.add('hidden');
+    }
+
+    // AKTIVASI AKUN OLEH ADMIN
+    async function adminApproveUser(id) {
+      const pIndex = pendingRegistrations.findIndex(p => p.id === id);
+      if (pIndex !== -1) {
+        const approvedUser = pendingRegistrations[pIndex];
+        approvedUser.isApproved = true;
+
+        showToast("Memproses persetujuan akun di cloud...");
+
+        try {
+          const response = await fetch(appscriptURL, {
+            method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" }, 
+            body: JSON.stringify({
+              action: "approve",
+              userId: approvedUser.id
+            })
+          });
+          
+          const res = await response.json();
+          if (res.status === "success") {
+            // Pindahkan ke daftar user aktif secara lokal
+            users.push(approvedUser);
+            localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+
+            pendingRegistrations.splice(pIndex, 1);
+            localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
+
+            showToast(`Akun ${approvedUser.name} berhasil diaktivasi secara instan!`);
+          } else {
+            showToast("Gagal mengaktivasi di server: " + res.message, "error");
+          }
+        } catch (err) {
+          console.warn("Koneksi cloud terhambat. Melakukan aktivasi lokal.", err);
+          
+          users.push(approvedUser);
+          localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+          pendingRegistrations.splice(pIndex, 1);
+          localStorage.setItem('edugen_pending_v2', JSON.stringify(pendingRegistrations));
+          
+          showToast(`Akun ${approvedUser.name} diaktifkan secara lokal.`);
+        }
+        
+        renderDashboard();
+      }
+    }
+
+    function adminAddUser() {
+      const name = document.getElementById('admin-add-name').value.trim();
+      const email = document.getElementById('admin-add-email').value.trim();
+      const userNew = document.getElementById('admin-add-username').value.trim().toLowerCase();
+      const pass = document.getElementById('admin-add-pass').value;
+      const role = document.getElementById('admin-add-role').value;
+
+      if (!name || !email || !userNew || !pass) {
+        showToast("Mohon isi seluruh parameter tambah user!", "error");
+        return;
+      }
+
+      if (users.some(u => u.email.toLowerCase() === email.toLowerCase() || u.username === userNew)) {
+        showToast("Username atau Email sudah terdaftar!", "error");
+        return;
+      }
+
+      const newUser = {
+        id: "man_" + Date.now(),
+        name: name,
+        email: email,
+        username: userNew,
+        pass: pass,
+        role: role,
+        instansi: currentUser.instansi,
+        level: "",
+        kelas: "",
+        limit_ganti: 1,
+        isApproved: true
+      };
+
+      users.push(newUser);
+      localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+      
+      document.getElementById('admin-add-name').value = "";
+      document.getElementById('admin-add-email').value = "";
+      document.getElementById('admin-add-username').value = "";
+      document.getElementById('admin-add-pass').value = "";
+
+      showToast("Pendaftaran pengguna manual sukses!");
+      renderAdminUsers();
+    }
+
+    function adminDeleteUser(userId) {
+      users = users.filter(u => u.id !== userId);
+      localStorage.setItem('edugen_users_v2', JSON.stringify(users));
+      showToast("Pengguna berhasil dihapus.");
+      renderAdminUsers();
+    }
+
+    // ==========================================
+    // AI GEMINI INTEGRATION (GENERATOR SOAL)
+    // ==========================================
     async function generateQuestions() {
       if (!currentUser.level || !currentUser.kelas) {
         showToast("Harap setel kelas pengajaran terlebih dahulu!", "error");
@@ -1337,7 +1548,7 @@
       document.getElementById('result-ready').classList.add('hidden');
       document.getElementById('result-loading').classList.remove('hidden');
 
-      const systemInstruction = "Anda adalah AI generator soal akademis profesional untuk sekolah dasar (SD) dan sekolah menengah pertama (SMP) di Indonesia. Buatlah kisi-kisi, lembar soal, dan pembahasan jawaban secara akurat sesuai standar penilaian Kurikulum.";
+      const systemInstruction = "Anda adalah AI generator soal akademis profesional untuk sekolah dasar (SD) dan sekolah menengah pertama (SMP) di Indonesia. Buatlah kisi-kisi, lembar soal, dan pembahasan jawaban secara akurat sesuai standar penilaian Kurikulum Merdeka.";
       
       const userPrompt = `
       Buatlah evaluasi soal dalam bentuk JSON terstruktur murni:
@@ -1501,89 +1712,6 @@
           <p class="text-xs text-slate-600 mt-1"><span class="font-semibold text-slate-700">Pembahasan:</span> ${kj.pembahasan}</p>
         </div>
       `).join('');
-    }
-
-    function applySelectiveExportVisibility() {
-      const showKisiKisi = document.getElementById('dl-check-kisikisi').checked;
-      const showSoal = document.getElementById('dl-check-soal').checked;
-      const showKunci = document.getElementById('dl-check-kunci').checked;
-
-      const secKisiKisi = document.getElementById('section-kisikisi');
-      const secSoal = document.getElementById('section-soal');
-      const secKunci = document.getElementById('section-kunci');
-
-      if (showKisiKisi) secKisiKisi.classList.remove('hidden'); else secKisiKisi.classList.add('hidden');
-      if (showSoal) secSoal.classList.remove('hidden'); else secSoal.classList.add('hidden');
-      if (showKunci) secKunci.classList.remove('hidden'); else secKunci.classList.add('hidden');
-    }
-
-    function resetSelectiveExportVisibility() {
-      document.getElementById('section-kisikisi').classList.remove('hidden');
-      document.getElementById('section-soal').classList.remove('hidden');
-      document.getElementById('section-kunci').classList.remove('hidden');
-    }
-
-    // PDF Export
-    function downloadAsPDF() {
-      applySelectiveExportVisibility();
-      
-      const { jsPDF } = window.jspdf;
-      const doc = new jsPDF('p', 'pt', 'a4');
-      const elementHTML = document.getElementById('document-print-area');
-      
-      doc.html(elementHTML, {
-        callback: function (doc) {
-          doc.save(`Soal_Wahana_Edukasi_${currentUser.kelas.replace(" ", "")}.pdf`);
-          resetSelectiveExportVisibility();
-        },
-        x: 40,
-        y: 40,
-        width: 515,
-        windowWidth: 800
-      });
-    }
-
-    // Word Doc Export
-    function downloadAsDoc() {
-      applySelectiveExportVisibility();
-      
-      const content = document.getElementById('document-print-area').innerHTML;
-      
-      const htmlString = `
-        <html xmlns:o='urn:schemas-microsoft-com:office:office' xmlns:w='urn:schemas-microsoft-com:office:word' xmlns='http://www.w3.org/TR/REC-html40'>
-        <head>
-          <title>Generator Soal Wahana Edukasi</title>
-          <style>
-            body { font-family: 'Arial', sans-serif; line-height: 1.5; font-size: 11pt; }
-            h2, h3 { text-align: center; text-transform: uppercase; margin-bottom: 5px; }
-            table { width: 100%; border-collapse: collapse; margin-top: 15px; margin-bottom: 15px; }
-            th, td { border: 1px solid #ccc; padding: 8px; font-size: 9pt; }
-            th { background-color: #f2f2f2; font-weight: bold; }
-            .grid { display: block; margin-top: 10px; }
-            .question-block { margin-bottom: 20px; }
-            .kunci-box { background-color: #f9f9f9; padding: 10px; border: 1px solid #e2e8f0; margin-top: 10px; }
-            .hidden { display: none !important; }
-          </style>
-        </head>
-        <body>
-          ${content}
-        </body>
-        </html>
-      `;
-
-      const blob = new Blob(['\ufeff' + htmlString], {
-        type: 'application/msword'
-      });
-
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `Soal_Wahana_Edukasi_${currentUser.kelas.replace(" ", "")}.doc`;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      
-      resetSelectiveExportVisibility();
     }
   </script>
 </body>
